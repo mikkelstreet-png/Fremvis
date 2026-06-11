@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fremvis â Fremvisningssystemet for ejendomsmÃ¦glere</title>
-  <meta name="description" content="Det simple fremvisningssystem, ejendomsmÃ¦glere har manglet. FÃ¦rre opkald, mindre koordinering og bedre overblik." />
+  <title>Fremvis â Fremvisningssystemet for ejendomsmæglere</title>
+  <meta name="description" content="Det simple fremvisningssystem, ejendomsmæglere har manglet. Færre opkald, mindre koordinering og bedre overblik." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -364,7 +365,7 @@
 <body>
   <div class="scroll-progress" id="scrollProgress"></div>
   <div class="announcement-bar">
-    <strong>Ny:</strong> Send Ã©n mail til ny@fremvis.dk â systemet opretter boligen pÃ¥ 30 sekunder â <a href="#" onclick="openModal()" style="color:white;text-decoration:underline">prÃ¸v gratis</a>
+    <strong>Ny:</strong> Send én mail til ny@fremvis.dk â systemet opretter boligen på 30 sekunder â <a href="#" onclick="openModal()" style="color:white;text-decoration:underline">prøv gratis</a>
   </div>
   <nav>
     <div class="nav-inner">
@@ -374,7 +375,7 @@
         <li><a href="#features">Funktioner</a></li>
         <li><a href="#demo">Demo</a></li>
         <li><a href="#pricing">Priser</a></li>
-        <li><a href="#" class="nav-cta" onclick="openModal(); return false;">PrÃ¸v gratis</a></li>
+        <li><a href="#" class="nav-cta" onclick="openModal(); return false;">Prøv gratis</a></li>
       </ul>
       <button class="nav-mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu">
         <i data-lucide="menu" style="width:20px;height:20px;color:var(--navy)"></i>
@@ -385,27 +386,27 @@
       <a href="#features" onclick="closeMobileNav()" style="display:block;padding:10px 0;font-size:0.9375rem;color:var(--navy);text-decoration:none;font-weight:500">Funktioner</a>
       <a href="#demo" onclick="closeMobileNav()" style="display:block;padding:10px 0;font-size:0.9375rem;color:var(--navy);text-decoration:none;font-weight:500">Demo</a>
       <a href="#pricing" onclick="closeMobileNav()" style="display:block;padding:10px 0;font-size:0.9375rem;color:var(--navy);text-decoration:none;font-weight:500">Priser</a>
-      <button class="modal-btn" onclick="openModal(); closeMobileNav();" style="margin-top:12px">PrÃ¸v gratis i 14 dage</button>
+      <button class="modal-btn" onclick="openModal(); closeMobileNav();" style="margin-top:12px">Prøv gratis i 14 dage</button>
     </div>
   </nav>
   <section id="hero">
     <div class="container">
       <div class="reveal">
-        <div class="hero-badge"><span class="dot"></span>Designet til danske ejendomsmÃ¦glere</div>
+        <div class="hero-badge"><span class="dot"></span>Designet til danske ejendomsmæglere</div>
       </div>
-      <h1 class="reveal reveal-delay-1">Send Ã©n mail.<br><em>Vi klarer resten.</em></h1>
-      <p class="hero-sub reveal reveal-delay-2">Fremvis opretter fremvisningen, sender sÃ¦lgerlink og Ã¥bner booking â alt fra din indbakke. Ingen ny platform at lÃ¦re.</p>
+      <h1 class="reveal reveal-delay-1">Send én mail.<br><em>Vi klarer resten.</em></h1>
+      <p class="hero-sub reveal reveal-delay-2">Fremvis opretter fremvisningen, sender sælgerlink og åbner booking â alt fra din indbakke. Ingen ny platform at lære.</p>
       <div class="hero-actions reveal reveal-delay-3">
         <button class="btn btn-primary btn-lg" onclick="openModal()">
           <i data-lucide="mail" style="width:18px;height:18px"></i>
-          PrÃ¸v gratis â send din fÃ¸rste mail nu
+          Prøv gratis â send din første mail nu
         </button>
         <a href="#demo" class="btn btn-secondary btn-lg">Se demo <i data-lucide="arrow-right" style="width:16px;height:16px"></i></a>
       </div>
       <div class="email-demo reveal reveal-delay-4">
         <div class="email-demo-box">
           <div class="email-header">
-            <div class="email-field"><span class="email-label">Fra:</span><span class="email-value">mÃ¦gler@ejendom.dk</span></div>
+            <div class="email-field"><span class="email-label">Fra:</span><span class="email-value">mægler@ejendom.dk</span></div>
             <div class="email-field"><span class="email-label">Til:</span><span class="email-value">ny@fremvis.dk</span></div>
             <div class="email-field"><span class="email-label">Emne:</span><span class="email-value">Strandvejen 42, 2900 Hellerup</span></div>
           </div>
@@ -413,17 +414,17 @@
             <p>Adresse: Strandvejen 42</p>
             <p>Pris: 4.850.000 kr</p>
             <p>Mulige fremvisningstider: Tirsdag 10-12, Torsdag 14-16</p>
-            <p>SÃ¦lger: lars@email.dk</p>
+            <p>Sælger: lars@email.dk</p>
           </div>
           <div class="email-confirm" id="heroEmailConfirm">
             <i data-lucide="check-circle" style="width:16px;height:16px"></i>
-            Fremvis sender sÃ¦lgerlink og Ã¥bner booking automatisk
+            Fremvis sender sælgerlink og åbner booking automatisk
           </div>
         </div>
       </div>
       <div class="hero-trust reveal reveal-delay-5">
         <div class="trust-item"><i data-lucide="check-circle" style="width:16px;height:16px;color:var(--green)"></i>Ingen binding</div>
-        <div class="trust-item"><i data-lucide="check-circle" style="width:16px;height:16px;color:var(--green)"></i>OpsÃ¦tning pÃ¥ 2 minutter</div>
+        <div class="trust-item"><i data-lucide="check-circle" style="width:16px;height:16px;color:var(--green)"></i>Opsætning på 2 minutter</div>
         <div class="trust-item"><i data-lucide="check-circle" style="width:16px;height:16px;color:var(--green)"></i>GDPR-compliant</div>
         <div class="trust-item"><i data-lucide="check-circle" style="width:16px;height:16px;color:var(--green)"></i>Dansk support</div>
       </div>
@@ -431,11 +432,11 @@
         <div class="hero-metric">
           <div style="display:flex;align-items:baseline;gap:4px"><span class="metric-number">2,1</span><span class="metric-unit">&nbsp;timer</span></div>
           <div class="metric-right">
-            <div class="metric-sub">sparet pr. uge pr. mÃ¦gler</div>
-            <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px">baseret pÃ¥ 8 fremvisninger/uge</div>
+            <div class="metric-sub">sparet pr. uge pr. mægler</div>
+            <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px">baseret på 8 fremvisninger/uge</div>
           </div>
           <button class="metric-info-btn" onclick="toggleMetricInfo()" title="Se beregning"><i data-lucide="info" style="width:14px;height:14px"></i></button>
-          <div class="metric-calc" id="metricCalc"><strong style="color:white">SÃ¥dan regner vi:</strong><br>8 fremvisninger Ã 4 min koordinering = 32 min<br>+ 15 min aflysningshÃ¥ndtering<br>+ 30 min sÃ¦lger-statusopkald<br>+ 15 min feedback-indhentning<br>= 92 min pr. uge</div>
+          <div class="metric-calc" id="metricCalc"><strong style="color:white">Sådan regner vi:</strong><br>8 fremvisninger Ã 4 min koordinering = 32 min<br>+ 15 min aflysningshåndtering<br>+ 30 min sælger-statusopkald<br>+ 15 min feedback-indhentning<br>= 92 min pr. uge</div>
         </div>
       </div>
       <div class="reveal reveal-delay-4" style="display:flex;justify-content:center;margin-bottom:48px;">
@@ -453,13 +454,13 @@
           </div>
           <div class="stat-row">
             <div class="stat-card"><div class="num">12</div><div class="lbl">Aktive boliger</div></div>
-            <div class="stat-card"><div class="num">47</div><div class="lbl">Fremvisninger i Ã¥r</div></div>
-            <div class="stat-card"><div class="num">94%</div><div class="lbl">BekrÃ¦ftelsesrate</div></div>
+            <div class="stat-card"><div class="num">47</div><div class="lbl">Fremvisninger i år</div></div>
+            <div class="stat-card"><div class="num">94%</div><div class="lbl">Bekræftelsesrate</div></div>
             <div class="stat-card"><div class="num">2,8t</div><div class="lbl">Sparet pr. uge via mail</div></div>
           </div>
           <div class="listing-rows">
             <div class="listing-row"><div class="listing-color" style="background:var(--green)"></div><span class="listing-addr">Strandvejen 142, 2900 Hellerup</span><span class="listing-meta">3 fremvisninger booket</span><span class="badge badge-green">Aktiv</span></div>
-            <div class="listing-row"><div class="listing-color" style="background:var(--gold)"></div><span class="listing-addr">Ãsterbrogade 89, 2100 KÃ¸benhavn Ã</span><span class="listing-meta">Afventer sÃ¦lger</span><span class="badge badge-gold">Afventer</span></div>
+            <div class="listing-row"><div class="listing-color" style="background:var(--gold)"></div><span class="listing-addr">Ãsterbrogade 89, 2100 København Ã</span><span class="listing-meta">Afventer sælger</span><span class="badge badge-gold">Afventer</span></div>
             <div class="listing-row"><div class="listing-color" style="background:var(--navy)"></div><span class="listing-addr">Gentoftegade 23, 2820 Gentofte</span><span class="listing-meta">1 fremvisning i dag kl. 14:00</span><span class="badge badge-navy">I dag</span></div>
           </div>
         </div>
@@ -470,14 +471,14 @@
     <div class="container">
       <div class="reveal">
         <div class="section-label">Problemet</div>
-        <h2 class="section-title">SÃ¥dan ser din dag ud i dag</h2>
-        <p class="section-sub">Koordinering af fremvisninger er en af de mest tidskrÃ¦vende og frustrerende dele af mÃ¦glerhverdagen. Det behÃ¸ver det ikke vÃ¦re.</p>
+        <h2 class="section-title">Sådan ser din dag ud i dag</h2>
+        <p class="section-sub">Koordinering af fremvisninger er en af de mest tidskrævende og frustrerende dele af mæglerhverdagen. Det behøver det ikke være.</p>
       </div>
       <div class="problem-grid">
-        <div class="pain-card reveal reveal-delay-1"><div class="pain-icon"><i data-lucide="phone-call" style="width:22px;height:22px"></i></div><div class="pain-title">Telefonrunden starter tidligt</div><p class="pain-text">Ring til sÃ¦lger for at finde ledige tider. Ring til kÃ¸ber for at booke. Ring igen fordi tidspunktet ikke passer. Gentag for alle boliger.</p></div>
-        <div class="pain-card reveal reveal-delay-2"><div class="pain-icon"><i data-lucide="mail-x" style="width:22px;height:22px"></i></div><div class="pain-title">Mailen overvÃ¦lder</div><p class="pain-text">"Kan vi rykke til 13:30?" "HvornÃ¥r er den nÃ¦ste fremvisning?" E-mail-trÃ¥de der aldrig slutter og aflyste tider ingen husker.</p></div>
-        <div class="pain-card reveal reveal-delay-3"><div class="pain-icon"><i data-lucide="calendar-x" style="width:22px;height:22px"></i></div><div class="pain-title">Konflikter og no-shows</div><p class="pain-text">Dobbelttidsbookinger sker fordi en Excel-kolonne ikke er opdateret. SÃ¦lger er ikke hjemme. KÃ¸ber mÃ¸der ikke op. Ingen vidste det.</p></div>
-        <div class="pain-card reveal reveal-delay-4"><div class="pain-icon"><i data-lucide="eye-off" style="width:22px;height:22px"></i></div><div class="pain-title">Ingen overblik over leads</div><p class="pain-text">Hvem fremviste hvornÃ¥r? Hvad sagde de bagefter? Hvem virker seriÃ¸s? Denne information sidder i din hoved, ikke et system.</p></div>
+        <div class="pain-card reveal reveal-delay-1"><div class="pain-icon"><i data-lucide="phone-call" style="width:22px;height:22px"></i></div><div class="pain-title">Telefonrunden starter tidligt</div><p class="pain-text">Ring til sælger for at finde ledige tider. Ring til køber for at booke. Ring igen fordi tidspunktet ikke passer. Gentag for alle boliger.</p></div>
+        <div class="pain-card reveal reveal-delay-2"><div class="pain-icon"><i data-lucide="mail-x" style="width:22px;height:22px"></i></div><div class="pain-title">Mailen overvælder</div><p class="pain-text">"Kan vi rykke til 13:30?" "Hvornår er den næste fremvisning?" E-mail-tråde der aldrig slutter og aflyste tider ingen husker.</p></div>
+        <div class="pain-card reveal reveal-delay-3"><div class="pain-icon"><i data-lucide="calendar-x" style="width:22px;height:22px"></i></div><div class="pain-title">Konflikter og no-shows</div><p class="pain-text">Dobbelttidsbookinger sker fordi en Excel-kolonne ikke er opdateret. Sælger er ikke hjemme. Køber møder ikke op. Ingen vidste det.</p></div>
+        <div class="pain-card reveal reveal-delay-4"><div class="pain-icon"><i data-lucide="eye-off" style="width:22px;height:22px"></i></div><div class="pain-title">Ingen overblik over leads</div><p class="pain-text">Hvem fremviste hvornår? Hvad sagde de bagefter? Hvem virker seriøs? Denne information sidder i din hoved, ikke et system.</p></div>
       </div>
       <div class="reveal" style="margin-top:40px; background:rgba(255,255,255,0.05); border-radius:var(--radius-lg); padding:28px 32px; border-left:4px solid var(--gold);">
         <p style="font-size:1rem; color:rgba(255,255,255,0.75); line-height:1.7; margin-bottom:10px;">Og det starter altid i din indbakke â men slutter med at du skal logge ind et nyt sted.</p>
@@ -488,15 +489,15 @@
   <section id="workflow">
     <div class="container">
       <div class="reveal" style="text-align:center">
-        <div class="section-label">SÃ¥dan virker det</div>
-        <h2 class="section-title">Fra indbakke til bekrÃ¦ftet fremvisning</h2>
-        <p class="section-sub" style="margin:0 auto">Send Ã©n mail. Systemet klarer resten â uden at du forlader din indbakke.</p>
+        <div class="section-label">Sådan virker det</div>
+        <h2 class="section-title">Fra indbakke til bekræftet fremvisning</h2>
+        <p class="section-sub" style="margin:0 auto">Send én mail. Systemet klarer resten â uden at du forlader din indbakke.</p>
       </div>
       <div class="workflow-steps">
-        <div class="workflow-step reveal reveal-delay-1"><div class="step-circle active" style="background:var(--green)"><i data-lucide="mail" style="width:24px;height:24px;color:white"></i></div><div class="step-actor">MÃ¦gler</div><div class="step-title">Send mail</div><p class="step-desc">Skriv boligdata til ny@fremvis.dk fra din indbakke. Systemet parser og opretter boligen automatisk.</p></div>
-        <div class="workflow-step reveal reveal-delay-2"><div class="step-circle gold"><i data-lucide="zap" style="width:22px;height:22px;color:white"></i></div><div class="step-actor">System</div><div class="step-title">Opretter bolig</div><p class="step-desc">Systemet parser din mail, opretter boligen og sender sÃ¦lgerlink inden for 30 sekunder.</p></div>
-        <div class="workflow-step reveal reveal-delay-3"><div class="step-circle navy">3</div><div class="step-actor">SÃ¦lger</div><div class="step-title">Godkender tider</div><p class="step-desc">SÃ¦lger modtager link og godkender fremvisningstider â ingen konto, ingen login.</p></div>
-        <div class="workflow-step reveal reveal-delay-4"><div class="step-circle outline">4</div><div class="step-actor">KÃ¸ber</div><div class="step-title">Booker selv</div><p class="step-desc">KÃ¸ber modtager link, vÃ¦lger tid og booker â bekrÃ¦ftelse sendes automatisk til alle.</p></div>
+        <div class="workflow-step reveal reveal-delay-1"><div class="step-circle active" style="background:var(--green)"><i data-lucide="mail" style="width:24px;height:24px;color:white"></i></div><div class="step-actor">Mægler</div><div class="step-title">Send mail</div><p class="step-desc">Skriv boligdata til ny@fremvis.dk fra din indbakke. Systemet parser og opretter boligen automatisk.</p></div>
+        <div class="workflow-step reveal reveal-delay-2"><div class="step-circle gold"><i data-lucide="zap" style="width:22px;height:22px;color:white"></i></div><div class="step-actor">System</div><div class="step-title">Opretter bolig</div><p class="step-desc">Systemet parser din mail, opretter boligen og sender sælgerlink inden for 30 sekunder.</p></div>
+        <div class="workflow-step reveal reveal-delay-3"><div class="step-circle navy">3</div><div class="step-actor">Sælger</div><div class="step-title">Godkender tider</div><p class="step-desc">Sælger modtager link og godkender fremvisningstider â ingen konto, ingen login.</p></div>
+        <div class="workflow-step reveal reveal-delay-4"><div class="step-circle outline">4</div><div class="step-actor">Køber</div><div class="step-title">Booker selv</div><p class="step-desc">Køber modtager link, vælger tid og booker â bekræftelse sendes automatisk til alle.</p></div>
       </div>
     </div>
   </section>
@@ -508,15 +509,15 @@
         <p class="section-sub">Fremvis er bygget rundt om din mail â ikke omvendt. Du arbejder som du altid har gjort.</p>
       </div>
       <div class="features-grid">
-        <div class="feature-card email-hero-card reveal reveal-delay-1"><div class="feature-icon"><i data-lucide="mail" style="width:22px;height:22px"></i></div><h3>Opret med Ã©n mail</h3><p>Send boligdata til ny@fremvis.dk. Systemet parser adressen, kontakter sÃ¦lger og Ã¥bner booking â du fÃ¥r en bekrÃ¦ftelse retur inden for 30 sekunder.</p></div>
-        <div class="feature-card reveal reveal-delay-2"><div class="feature-icon"><i data-lucide="reply" style="width:22px;height:22px"></i></div><h3>KÃ¸ber svarer bare 'ja'</h3><p>KÃ¸ber modtager en mail med ledige tider og svarer med det tidspunkt de Ã¸nsker. Ingen form, ingen login, ingen friktion. Systemet bekrÃ¦fter automatisk.</p></div>
+        <div class="feature-card email-hero-card reveal reveal-delay-1"><div class="feature-icon"><i data-lucide="mail" style="width:22px;height:22px"></i></div><h3>Opret med én mail</h3><p>Send boligdata til ny@fremvis.dk. Systemet parser adressen, kontakter sælger og åbner booking â du får en bekræftelse retur inden for 30 sekunder.</p></div>
+        <div class="feature-card reveal reveal-delay-2"><div class="feature-icon"><i data-lucide="reply" style="width:22px;height:22px"></i></div><h3>Køber svarer bare 'ja'</h3><p>Køber modtager en mail med ledige tider og svarer med det tidspunkt de ønsker. Ingen form, ingen login, ingen friktion. Systemet bekræfter automatisk.</p></div>
         <!-- C1: Kalenderintegration â first and most prominent -->
         <div class="feature-card feature-card-wide reveal">
           <div class="fc-inner">
             <div class="feature-icon feature-icon-blue" style="flex-shrink:0;width:56px;height:56px;"><i data-lucide="calendar-sync" style="width:26px;height:26px"></i></div>
             <div>
               <h3>Kalenderintegration â ingen dobbelttidsbookinger</h3>
-              <p>Uden kalendersynkronisering risikerer mÃ¦gleren at blive booket til en fremvisning midt i et klientmÃ¸de. SÃ¦lger stoler aldrig pÃ¥ et system der dobbeltbooker. Fremvis synkroniserer direkte med din Outlook- eller Google Kalender â eksisterende aftaler blokeres automatisk.</p>
+              <p>Uden kalendersynkronisering risikerer mægleren at blive booket til en fremvisning midt i et klientmøde. Sælger stoler aldrig på et system der dobbeltbooker. Fremvis synkroniserer direkte med din Outlook- eller Google Kalender â eksisterende aftaler blokeres automatisk.</p>
               <div class="calendar-sync-logos">
                 <div class="sync-logo"><i data-lucide="calendar" style="width:13px;height:13px;color:#0078d4"></i> Outlook Kalender</div>
                 <div class="sync-logo"><i data-lucide="calendar" style="width:13px;height:13px;color:#4285f4"></i> Google Kalender</div>
@@ -528,10 +529,10 @@
         <!-- C2: Ruteoptimering -->
         <div class="feature-card reveal reveal-delay-1">
           <div class="feature-icon"><i data-lucide="map-pin" style="width:22px;height:22px"></i></div>
-          <h3>Ruteoptimering â spar tid pÃ¥ vejen</h3>
-          <p>4 fremvisninger fredag? Fremvis klynger dem geografisk, sÃ¥ du slipper for at kÃ¸re frem og tilbage. Spar tid pÃ¥ vejen â ikke bare pÃ¥ kontoret.</p>
+          <h3>Ruteoptimering â spar tid på vejen</h3>
+          <p>4 fremvisninger fredag? Fremvis klynger dem geografisk, så du slipper for at køre frem og tilbage. Spar tid på vejen â ikke bare på kontoret.</p>
           <div class="route-visual">
-            <div class="route-label">Optimeret rÃ¦kkefÃ¸lge fredag</div>
+            <div class="route-label">Optimeret rækkefølge fredag</div>
             <div class="route-stops">
               <div class="route-stop"><div class="stop-num">1</div><span>Strandvejen 142, Hellerup</span></div>
               <div class="route-line"></div>
@@ -543,24 +544,24 @@
             </div>
           </div>
         </div>
-        <div class="feature-card reveal reveal-delay-1"><div class="feature-icon"><i data-lucide="link" style="width:22px;height:22px"></i></div><h3>SÃ¦lger godkender via link</h3><p>Send Ã©t link. SÃ¦lger vÃ¦lger tilgÃ¦ngelige tider direkte i browseren. Ingen app, ingen konto, ingen forvirring.</p></div>
-        <div class="feature-card reveal reveal-delay-2"><div class="feature-icon"><i data-lucide="calendar-plus" style="width:22px;height:22px"></i></div><h3>KÃ¸ber booker og aflyser selv</h3><p>KÃ¸ber ser alle ledige tider og booker uden login. Afbooking og ombooking klares selvstÃ¦ndigt.</p></div>
-        <div class="feature-card reveal reveal-delay-3"><div class="feature-icon"><i data-lucide="bell-ring" style="width:22px;height:22px"></i></div><h3>Automatiske bekrÃ¦ftelser og reminders</h3><p>Alle parter modtager automatisk bekrÃ¦ftelse og reminder 24 timer fÃ¸r fremvisningen. Ingen no-shows.</p></div>
+        <div class="feature-card reveal reveal-delay-1"><div class="feature-icon"><i data-lucide="link" style="width:22px;height:22px"></i></div><h3>Sælger godkender via link</h3><p>Send ét link. Sælger vælger tilgængelige tider direkte i browseren. Ingen app, ingen konto, ingen forvirring.</p></div>
+        <div class="feature-card reveal reveal-delay-2"><div class="feature-icon"><i data-lucide="calendar-plus" style="width:22px;height:22px"></i></div><h3>Køber booker og aflyser selv</h3><p>Køber ser alle ledige tider og booker uden login. Afbooking og ombooking klares selvstændigt.</p></div>
+        <div class="feature-card reveal reveal-delay-3"><div class="feature-icon"><i data-lucide="bell-ring" style="width:22px;height:22px"></i></div><h3>Automatiske bekræftelser og reminders</h3><p>Alle parter modtager automatisk bekræftelse og reminder 24 timer før fremvisningen. Ingen no-shows.</p></div>
         <!-- C5: Venteliste -->
         <div class="feature-card reveal reveal-delay-2">
           <div class="feature-icon"><i data-lucide="users" style="width:22px;height:22px"></i></div>
-          <h3>Venteliste â ingen kÃ¸ber misses</h3>
-          <p>Fuldt booket? KÃ¸ber sÃ¦ttes automatisk pÃ¥ venteliste og fÃ¥r besked med det samme ved aflysning. <strong style="color:var(--navy)">"2 pladser tilbage"</strong> <i data-lucide="chevron-right" style="width:12px;height:12px;vertical-align:-1px;margin-right:2px"></i>fuldt <i data-lucide="chevron-right" style="width:12px;height:12px;vertical-align:-1px;margin-right:2px"></i>venteliste <i data-lucide="chevron-right" style="width:12px;height:12px;vertical-align:-1px;margin-right:2px"></i>automatisk besked. Ingen manuelle opfÃ¸lgninger.</p>
+          <h3>Venteliste â ingen køber misses</h3>
+          <p>Fuldt booket? Køber sættes automatisk på venteliste og får besked med det samme ved aflysning. <strong style="color:var(--navy)">"2 pladser tilbage"</strong> <i data-lucide="chevron-right" style="width:12px;height:12px;vertical-align:-1px;margin-right:2px"></i>fuldt <i data-lucide="chevron-right" style="width:12px;height:12px;vertical-align:-1px;margin-right:2px"></i>venteliste <i data-lucide="chevron-right" style="width:12px;height:12px;vertical-align:-1px;margin-right:2px"></i>automatisk besked. Ingen manuelle opfølgninger.</p>
         </div>
         <!-- C6: Feedback-SMS -->
         <div class="feature-card reveal reveal-delay-3">
           <div class="feature-icon"><i data-lucide="message-square" style="width:22px;height:22px"></i></div>
           <h3>Feedback-SMS â automatisk efter fremvisning</h3>
-          <p>1 time efter fremvisning sender Fremvis 3 spÃ¸rgsmÃ¥l til kÃ¸ber via SMS: <em>"Hvad var dit overordnede indtryk? (1-5)"</em> Â· <em>"Var prisen interessant?"</em> Â· <em>"Vil du hÃ¸re mere?"</em> â AI-opsummeringen er kun sÃ¥ god som dataen bag den.</p>
+          <p>1 time efter fremvisning sender Fremvis 3 spørgsmål til køber via SMS: <em>"Hvad var dit overordnede indtryk? (1-5)"</em> Â· <em>"Var prisen interessant?"</em> Â· <em>"Vil du høre mere?"</em> â AI-opsummeringen er kun så god som dataen bag den.</p>
         </div>
-                <div class="feature-card reveal reveal-delay-1"><div class="feature-icon"><i data-lucide="layout-dashboard" style="width:22px;height:22px"></i></div><h3>MÃ¦gler-dashboard med lead-overblik</h3><p>Se alle dine boliger, fremvisninger og interesserede kÃ¸bere i Ã©t dashboard. Filtrer, sorter og eksportÃ©r.</p></div>
-        <div class="feature-card reveal reveal-delay-2"><div class="feature-icon"><i data-lucide="home" style="width:22px;height:22px"></i></div><h3>SÃ¦lger-statusside</h3><p>SÃ¦lger kan til enhver tid se, hvem der har fremvist, og modtage anonymiseret feedback â Ã¸ger tillid og reducerer statusopkald.</p></div>
-        <div class="feature-card reveal reveal-delay-3"><div class="feature-icon"><i data-lucide="sparkles" style="width:22px;height:22px"></i></div><h3>AI-opsummering af kÃ¸berinteresse</h3><p>Fremvis analyserer feedback og adfÃ¦rd og giver mÃ¦gleren en klar opsummering: "2 seriÃ¸se interesserede, 1 afventende."</p></div>
+                <div class="feature-card reveal reveal-delay-1"><div class="feature-icon"><i data-lucide="layout-dashboard" style="width:22px;height:22px"></i></div><h3>Mægler-dashboard med lead-overblik</h3><p>Se alle dine boliger, fremvisninger og interesserede købere i ét dashboard. Filtrer, sorter og eksportér.</p></div>
+        <div class="feature-card reveal reveal-delay-2"><div class="feature-icon"><i data-lucide="home" style="width:22px;height:22px"></i></div><h3>Sælger-statusside</h3><p>Sælger kan til enhver tid se, hvem der har fremvist, og modtage anonymiseret feedback â øger tillid og reducerer statusopkald.</p></div>
+        <div class="feature-card reveal reveal-delay-3"><div class="feature-icon"><i data-lucide="sparkles" style="width:22px;height:22px"></i></div><h3>AI-opsummering af køberinteresse</h3><p>Fremvis analyserer feedback og adfærd og giver mægleren en klar opsummering: "2 seriøse interesserede, 1 afventende."</p></div>
         <div class="feature-card reveal reveal-delay-1"><div class="feature-icon"><i data-lucide="activity" style="width:22px;height:22px"></i></div><h3>Køber-aktivitet på tværs af boliger</h3><p>Køber der har set tre boliger? Det er et ultravarmt lead. Fremvis samler aktivitet på tværs — så du ved hvem du skal ringe til.</p></div>
         <div class="feature-card reveal reveal-delay-2"><div class="feature-icon"><i data-lucide="sunrise" style="width:22px;height:22px"></i></div><h3>Morgen-digest</h3><p>Dagens program direkte i din indbakke kl. 07:45. Fremvisninger, rute, varme leads — ingen login nødvendig.</p></div>
         <div class="feature-card reveal reveal-delay-3"><div class="feature-icon"><i data-lucide="send" style="width:22px;height:22px"></i></div><h3>Auto sælgeropdatering</h3><p>Sælger får automatisk besked om hvem der kommer, hvornår — og en opsummering bagefter. Stop med at ringe for at opdatere.</p></div>
@@ -573,7 +574,7 @@
       <div class="reveal" style="text-align:center">
         <div class="section-label">Hvorfor det virker</div>
         <h2 class="section-title">Fremvis bor i din indbakke</h2>
-        <p class="section-sub" style="margin:0 auto">Du arbejder allerede i din mail. Vi mÃ¸der dig der â ikke omvendt.</p>
+        <p class="section-sub" style="margin:0 auto">Du arbejder allerede i din mail. Vi møder dig der â ikke omvendt.</p>
       </div>
       <div class="indbakke-bullets">
         <div class="indbakke-bullet reveal reveal-delay-1">
@@ -584,12 +585,12 @@
         <div class="indbakke-bullet reveal reveal-delay-2">
           <div class="indbakke-icon"><i data-lucide="bell" style="width:22px;height:22px"></i></div>
           <div class="indbakke-title">Modtag notifikationer direkte i indbakken</div>
-          <p class="indbakke-text">Ny booking, aflysning eller besked â du fÃ¥r besked i den indbakke du allerede tjekker.</p>
+          <p class="indbakke-text">Ny booking, aflysning eller besked â du får besked i den indbakke du allerede tjekker.</p>
         </div>
         <div class="indbakke-bullet reveal reveal-delay-3">
           <div class="indbakke-icon"><i data-lucide="bar-chart-2" style="width:22px;height:22px"></i></div>
           <div class="indbakke-title">Daglig digest med status</div>
-          <p class="indbakke-text">Hver morgen: en samlet oversigt over dagens fremvisninger og aktive boliger. Ingen login nÃ¸dvendig.</p>
+          <p class="indbakke-text">Hver morgen: en samlet oversigt over dagens fremvisninger og aktive boliger. Ingen login nødvendig.</p>
         </div>
       </div>
     </div>
@@ -646,36 +647,36 @@
       <div class="reveal" style="text-align:center">
         <div class="section-label">Interaktiv demo</div>
         <h2 class="section-title">Se Fremvis fra alle vinkler</h2>
-        <p class="section-sub" style="margin:0 auto">PrÃ¸v de tre flows og se prÃ¦cis, hvad mÃ¦gler, sÃ¦lger og kÃ¸ber oplever.</p>
+        <p class="section-sub" style="margin:0 auto">Prøv de tre flows og se præcis, hvad mægler, sælger og køber oplever.</p>
       </div>
       <div class="demo-tabs reveal reveal-delay-1">
-        <button class="demo-tab active" onclick="switchTab('magler')">MÃ¦gler-flow</button>
-        <button class="demo-tab" onclick="switchTab('saelger')">SÃ¦lger-flow</button>
-        <button class="demo-tab" onclick="switchTab('koeber')">KÃ¸ber-flow</button>
+        <button class="demo-tab active" onclick="switchTab('magler')">Mægler-flow</button>
+        <button class="demo-tab" onclick="switchTab('saelger')">Sælger-flow</button>
+        <button class="demo-tab" onclick="switchTab('koeber')">Køber-flow</button>
       </div>
       <div class="demo-panels">
         <div class="demo-panel active" id="panel-magler">
           <div class="demo-interface reveal reveal-delay-2">
-            <div class="demo-interface-header"><i data-lucide="mail" style="width:18px;height:18px"></i><h4>Email-flow â fra indbakke til bekrÃ¦ftet fremvisning</h4><span class="badge badge-green" style="margin-left:auto">30 sek</span></div>
+            <div class="demo-interface-header"><i data-lucide="mail" style="width:18px;height:18px"></i><h4>Email-flow â fra indbakke til bekræftet fremvisning</h4><span class="badge badge-green" style="margin-left:auto">30 sek</span></div>
             <div class="demo-interface-body">
               <div class="email-flow-step">
                 <div class="email-step-icon" style="background:var(--green);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="send" style="width:14px;height:14px;color:white"></i></div>
                 <div class="email-step-text" style="flex:1">
-                  <strong style="display:block;font-size:0.875rem;font-weight:600;color:var(--navy);margin-bottom:2px">MÃ¦gler sender mail</strong>
-                  <span style="font-size:0.8125rem;color:var(--text-secondary);font-family:monospace">Til: ny@fremvis.dk &middot; Emne: Strandvejen 42 &middot; [adresse, pris, tider, sÃ¦lger]</span>
+                  <strong style="display:block;font-size:0.875rem;font-weight:600;color:var(--navy);margin-bottom:2px">Mægler sender mail</strong>
+                  <span style="font-size:0.8125rem;color:var(--text-secondary);font-family:monospace">Til: ny@fremvis.dk &middot; Emne: Strandvejen 42 &middot; [adresse, pris, tider, sælger]</span>
                 </div>
               </div>
               <div class="email-flow-step" style="margin-top:10px">
                 <div class="email-step-icon" style="background:var(--navy);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="zap" style="width:14px;height:14px;color:white"></i></div>
                 <div class="email-step-text" style="flex:1">
                   <strong style="display:block;font-size:0.875rem;font-weight:600;color:var(--navy);margin-bottom:2px">System svarer (28 sek)</strong>
-                  <span style="font-size:0.8125rem;color:var(--text-secondary);font-family:monospace">Bolig oprettet. SÃ¦lgerlink sendt til lars@email.dk. Bookinglink: fremvis.dk/strandvejen42</span>
+                  <span style="font-size:0.8125rem;color:var(--text-secondary);font-family:monospace">Bolig oprettet. Sælgerlink sendt til lars@email.dk. Bookinglink: fremvis.dk/strandvejen42</span>
                 </div>
               </div>
               <div class="email-flow-step" style="margin-top:10px">
                 <div class="email-step-icon" style="background:var(--gold);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="bell" style="width:14px;height:14px;color:white"></i></div>
                 <div class="email-step-text" style="flex:1">
-                  <strong style="display:block;font-size:0.875rem;font-weight:600;color:var(--navy);margin-bottom:2px">Notifikation til mÃ¦gler</strong>
+                  <strong style="display:block;font-size:0.875rem;font-weight:600;color:var(--navy);margin-bottom:2px">Notifikation til mægler</strong>
                   <span style="font-size:0.8125rem;color:var(--text-secondary);font-family:monospace">Ny booking: Mette Hansen &mdash; tirsdag 10:30, Strandvejen 42</span>
                 </div>
               </div>
@@ -683,7 +684,7 @@
                 <div class="email-step-icon" style="background:var(--green);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="bar-chart-2" style="width:14px;height:14px;color:white"></i></div>
                 <div class="email-step-text" style="flex:1">
                   <strong style="display:block;font-size:0.875rem;font-weight:600;color:var(--navy);margin-bottom:2px">Daglig digest (07:30)</strong>
-                  <span style="font-size:0.8125rem;color:var(--text-secondary);font-family:monospace">3 fremvisninger i dag &middot; 2 nye bookinger &middot; 1 afventer sÃ¦lger &mdash; ingen login nÃ¸dvendigt</span>
+                  <span style="font-size:0.8125rem;color:var(--text-secondary);font-family:monospace">3 fremvisninger i dag &middot; 2 nye bookinger &middot; 1 afventer sælger &mdash; ingen login nødvendigt</span>
                 </div>
               </div>
               <p style="font-size:0.875rem;color:var(--text-muted);margin-top:16px;text-align:center"><i data-lucide="info" style="width:14px;height:14px;vertical-align:middle;margin-right:4px"></i>Alt sker i din eksisterende mailklient &mdash; Outlook, Gmail eller hvad du bruger</p>
@@ -694,8 +695,8 @@
           <div class="demo-interface reveal">
             <div class="demo-interface-header"><i data-lucide="home" style="width:18px;height:18px"></i><h4>Din bolig â Godkend fremvisningstider</h4></div>
             <div class="demo-interface-body">
-              <div class="seller-intro"><p>Din mÃ¦gler Mette Krog har oprettet fremvisningsmuligheder til Strandvejen 142. VÃ¦lg de tider, der passer dig.</p></div>
-              <p style="font-size:0.875rem;font-weight:600;color:var(--navy);margin-bottom:12px">VÃ¦lg dine foretrukne tider (klik for at vÃ¦lge/fravÃ¦lge):</p>
+              <div class="seller-intro"><p>Din mægler Mette Krog har oprettet fremvisningsmuligheder til Strandvejen 142. Vælg de tider, der passer dig.</p></div>
+              <p style="font-size:0.875rem;font-weight:600;color:var(--navy);margin-bottom:12px">Vælg dine foretrukne tider (klik for at vælge/fravælge):</p>
               <div class="time-grid" id="timeGrid">
                 <div class="time-slot" onclick="toggleSlot(this)"><div class="day">Man 16. juni</div><div class="time">10:00â11:00</div></div>
                 <div class="time-slot selected" onclick="toggleSlot(this)"><div class="day">Man 16. juni</div><div class="time">14:00â15:00</div></div>
@@ -705,7 +706,7 @@
                 <div class="time-slot selected" onclick="toggleSlot(this)"><div class="day">Fre 20. juni</div><div class="time">10:00â11:00</div></div>
               </div>
               <button class="modal-btn" id="sellerConfirmBtn" onclick="confirmSellerTimes()">Godkend valgte tider</button>
-              <div id="sellerConfirmation" class="confirmation-box"><h4>Tider godkendt</h4><p>Dine valgte tider er sendt til din mÃ¦gler. KÃ¸bere kan nu booke inden for disse tider.</p></div>
+              <div id="sellerConfirmation" class="confirmation-box"><h4>Tider godkendt</h4><p>Dine valgte tider er sendt til din mægler. Købere kan nu booke inden for disse tider.</p></div>
             </div>
           </div>
         </div>
@@ -715,15 +716,15 @@
             <div class="demo-interface-body">
               <div class="buyer-property">
                 <div class="property-thumb"><i data-lucide="home" style="width:26px;height:26px"></i></div>
-                <div><div style="font-weight:600;color:var(--navy)">Strandvejen 142, 2900 Hellerup</div><div style="font-size:0.875rem;color:var(--text-muted);margin-top:2px">Villa Â· 145 mÂ² Â· 4 vÃ¦r. Â· Udbudt: 7.950.000 kr.</div><div style="margin-top:6px"><span class="badge badge-green">3 ledige tider</span></div></div>
+                <div><div style="font-weight:600;color:var(--navy)">Strandvejen 142, 2900 Hellerup</div><div style="font-size:0.875rem;color:var(--text-muted);margin-top:2px">Villa Â· 145 mÂ² Â· 4 vær. Â· Udbudt: 7.950.000 kr.</div><div style="margin-top:6px"><span class="badge badge-green">3 ledige tider</span></div></div>
               </div>
-              <p style="font-size:0.875rem;font-weight:600;color:var(--navy);margin-bottom:12px">VÃ¦lg en tid der passer dig:</p>
+              <p style="font-size:0.875rem;font-weight:600;color:var(--navy);margin-bottom:12px">Vælg en tid der passer dig:</p>
               <div class="buyer-slots" id="buyerSlots">
                 <div class="buyer-slot" onclick="bookSlot(this,0)"><div><div class="slot-info">Mandag 16. juni kl. 14:00â15:00</div><div class="slot-spots">2 pladser tilbage</div></div><i data-lucide="arrow-right" style="width:16px;height:16px;color:var(--green)"></i></div>
-                <div class="buyer-slot" onclick="bookSlot(this,1)"><div><div class="slot-info">Tirsdag 17. juni kl. 17:00â18:00</div><div class="slot-spots">Fuldt booket</div><div style="font-size:0.75rem;color:var(--gold);font-weight:600;margin-top:2px"><i data-lucide="arrow-right" style="width:12px;height:12px;vertical-align:-1px;margin-right:3px"></i>SÃ¦t dig pÃ¥ venteliste â automatisk besked ved aflysning</div></div><i data-lucide="arrow-right" style="width:16px;height:16px;color:var(--gold)"></i></div>
+                <div class="buyer-slot" onclick="bookSlot(this,1)"><div><div class="slot-info">Tirsdag 17. juni kl. 17:00â18:00</div><div class="slot-spots">Fuldt booket</div><div style="font-size:0.75rem;color:var(--gold);font-weight:600;margin-top:2px"><i data-lucide="arrow-right" style="width:12px;height:12px;vertical-align:-1px;margin-right:3px"></i>Sæt dig på venteliste â automatisk besked ved aflysning</div></div><i data-lucide="arrow-right" style="width:16px;height:16px;color:var(--gold)"></i></div>
                 <div class="buyer-slot" onclick="bookSlot(this,2)"><div><div class="slot-info">Fredag 20. juni kl. 10:00â11:00</div><div class="slot-spots">4 pladser tilbage</div></div><i data-lucide="arrow-right" style="width:16px;height:16px;color:var(--green)"></i></div>
               </div>
-              <div id="buyerConfirmation" class="confirmation-box"><h4>Fremvisning booket</h4><p id="buyerConfirmationText">Du modtager en bekrÃ¦ftelse pÃ¥ e-mail og SMS inden for et Ã¸jeblik.</p></div>
+              <div id="buyerConfirmation" class="confirmation-box"><h4>Fremvisning booket</h4><p id="buyerConfirmationText">Du modtager en bekræftelse på e-mail og SMS inden for et øjeblik.</p></div>
             </div>
           </div>
         </div>
@@ -734,83 +735,83 @@
     <div class="container">
       <div class="reveal" style="text-align:center">
         <div class="section-label">Priser</div>
-        <h2 class="section-title">Enkel og gennemsigtig prissÃ¦tning</h2>
-        <p class="section-sub" style="margin:0 auto">Alle planer inkluderer ubegrÃ¦nsede boliger og fremvisninger. PrÃ¸v gratis i 14 dage â ingen kreditkort krÃ¦ves.</p>
+        <h2 class="section-title">Enkel og gennemsigtig prissætning</h2>
+        <p class="section-sub" style="margin:0 auto">Alle planer inkluderer ubegrænsede boliger og fremvisninger. Prøv gratis i 14 dage â ingen kreditkort kræves.</p>
       </div>
       <div class="pricing-grid">
         <div class="pricing-card reveal reveal-delay-1">
           <div class="plan-name">Solo</div>
           <div class="plan-price">299<span> kr/md</span></div>
-          <p class="plan-desc">Til den selvstÃ¦ndige mÃ¦gler, der Ã¸nsker at fjerne koordineringsarbeidet Ã©n gang for alle.</p>
+          <p class="plan-desc">Til den selvstændige mægler, der ønsker at fjerne koordineringsarbeidet én gang for alle.</p>
           <ul class="plan-features">
-            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>UbegrÃ¦nsede boliger</li>
-            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>UbegrÃ¦nsede fremvisninger</li>
-            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>1 mÃ¦gler-konto</li>
-            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Automatiske bekrÃ¦ftelser og reminders</li>
-            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>KÃ¸ber- og sÃ¦lger-links</li>
-            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>GrundlÃ¦ggende dashboard</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Ubegrænsede boliger</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Ubegrænsede fremvisninger</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>1 mægler-konto</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Automatiske bekræftelser og reminders</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Køber- og sælger-links</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Grundlæggende dashboard</li>
           </ul>
-          <button class="btn-pricing-primary" onclick="openModal()">Start gratis prÃ¸veperiode</button>
+          <button class="btn-pricing-primary" onclick="openModal()">Start gratis prøveperiode</button>
         </div>
         <div class="pricing-card featured reveal reveal-delay-2">
-          <div class="pricing-tag">Mest populÃ¦r</div>
+          <div class="pricing-tag">Mest populær</div>
           <div class="plan-name">Team</div>
           <div class="plan-price">799<span> kr/md</span></div>
-          <p class="plan-desc">Til kontoret der Ã¸nsker et fÃ¦lles overblik og deling af leads pÃ¥ tvÃ¦rs af mÃ¦glere.</p>
+          <p class="plan-desc">Til kontoret der ønsker et fælles overblik og deling af leads på tværs af mæglere.</p>
           <ul class="plan-features">
             <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Alt fra Solo</li>
-            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Op til 5 mÃ¦gler-konti</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Op til 5 mægler-konti</li>
             <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Delt lead-database</li>
-            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>AI-opsummering af kÃ¸berinteresse</li>
-            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>SÃ¦lger-statusside</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>AI-opsummering af køberinteresse</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Sælger-statusside</li>
             <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Prioriteret support</li>
           </ul>
-          <button class="btn-pricing-outline" onclick="openModal()">Start gratis prÃ¸veperiode</button>
+          <button class="btn-pricing-outline" onclick="openModal()">Start gratis prøveperiode</button>
         </div>
         <div class="pricing-card reveal reveal-delay-3">
-          <div class="plan-name">KÃ¦de</div>
+          <div class="plan-name">Kæde</div>
           <div class="plan-price" style="font-size:2rem">Kontakt os</div>
-          <p class="plan-desc">Til landsdÃ¦kkende kÃ¦der med sÃ¦rlige behov for integration, SSO og centraliseret styring.</p>
+          <p class="plan-desc">Til landsdækkende kæder med særlige behov for integration, SSO og centraliseret styring.</p>
           <ul class="plan-features">
             <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Alt fra Team</li>
-            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>UbegrÃ¦nsede mÃ¦glere</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Ubegrænsede mæglere</li>
             <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>SSO / Active Directory</li>
             <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>API-adgang</li>
             <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Custom onboarding</li>
             <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Dedikeret account manager</li>
           </ul>
-          <button class="btn-pricing-ghost" onclick="openModal()">Book et mÃ¸de</button>
+          <button class="btn-pricing-ghost" onclick="openModal()">Book et møde</button>
         </div>
       </div>
-      <p class="pricing-note reveal">14 dages gratis prÃ¸veperiode pÃ¥ alle planer. Ingen kreditkort krÃ¦ves. Opsig til enhver tid.</p>
+      <p class="pricing-note reveal">14 dages gratis prøveperiode på alle planer. Ingen kreditkort kræves. Opsig til enhver tid.</p>
     </div>
   </section>
   <section id="social-proof">
     <div class="container">
       <div class="reveal" style="text-align:center">
         <div class="section-label">Beta-brugere</div>
-        <h2 class="section-title">MÃ¦glere sparer timer hver uge</h2>
+        <h2 class="section-title">Mæglere sparer timer hver uge</h2>
       </div>
       <div class="testimonials-grid">
         <div class="testimonial reveal reveal-delay-1">
           <div class="stars"><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span></div>
-          <p class="testimonial-text">Fremvis har Ã¦ndret min arbejdsdag fuldstÃ¦ndigt. Jeg brugte nemt 2 timer om ugen pÃ¥ at koordinere fremvisninger per telefon. Nu sker det hele automatisk, og jeg har pludselig tid til det, der faktisk skaber salg.</p>
-          <div class="testimonial-author"><div class="author-avatar">MK</div><div><div class="author-name">Mads, selvstÃ¦ndig mÃ¦gler</div><div class="author-role">Beta-bruger siden 2024</div></div></div>
+          <p class="testimonial-text">Fremvis har ændret min arbejdsdag fuldstændigt. Jeg brugte nemt 2 timer om ugen på at koordinere fremvisninger per telefon. Nu sker det hele automatisk, og jeg har pludselig tid til det, der faktisk skaber salg.</p>
+          <div class="testimonial-author"><div class="author-avatar">MK</div><div><div class="author-name">Mads, selvstændig mægler</div><div class="author-role">Beta-bruger siden 2024</div></div></div>
         </div>
         <div class="testimonial reveal reveal-delay-2">
           <div class="stars"><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span></div>
-          <p class="testimonial-text">Vores sÃ¦lgere er vilde med det. De kan godkende tider fra telefonen pÃ¥ to minutter, og de fÃ¥r automatisk besked, nÃ¥r nogen booker. Vi fÃ¥r nÃ¦sten ingen statusopkald mere â det er guld vÃ¦rd.</p>
+          <p class="testimonial-text">Vores sælgere er vilde med det. De kan godkende tider fra telefonen på to minutter, og de får automatisk besked, når nogen booker. Vi får næsten ingen statusopkald mere â det er guld værd.</p>
           <div class="testimonial-author"><div class="author-avatar">TN</div><div><div class="author-name">Thomas, partner i lille kontor</div><div class="author-role">Beta-bruger siden 2024</div></div></div>
         </div>
         <div class="testimonial reveal reveal-delay-3">
           <div class="stars"><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span></div>
-          <p class="testimonial-text">AI-opsummeringen er genial. Jeg kan i Ã©t blik se, at "KÃ¸ber 3 spurgte til prisen to gange og bad om tegninger" â den slags nuancer glemte jeg altid at skrive ned. Nu er det bare der automatisk.</p>
-          <div class="testimonial-author"><div class="author-avatar">SL</div><div><div class="author-name">Sofie, selvstÃ¦ndig mÃ¦gler</div><div class="author-role">Beta-bruger siden 2024</div></div></div>
+          <p class="testimonial-text">AI-opsummeringen er genial. Jeg kan i ét blik se, at "Køber 3 spurgte til prisen to gange og bad om tegninger" â den slags nuancer glemte jeg altid at skrive ned. Nu er det bare der automatisk.</p>
+          <div class="testimonial-author"><div class="author-avatar">SL</div><div><div class="author-name">Sofie, selvstændig mægler</div><div class="author-role">Beta-bruger siden 2024</div></div></div>
         </div>
       </div>
       <div class="beta-cta reveal">
-        <p><strong>Brugt af ejendomsmÃ¦glere i beta.</strong> Vi er stadig i tidlig fase â og det er dit vindue til at sÃ¦tte prÃ¦g pÃ¥ produktet.</p>
-        <button class="btn btn-primary" onclick="openModal()">AnsÃ¸g om beta-plads</button>
+        <p><strong>Brugt af ejendomsmæglere i beta.</strong> Vi er stadig i tidlig fase â og det er dit vindue til at sætte præg på produktet.</p>
+        <button class="btn btn-primary" onclick="openModal()">Ansøg om beta-plads</button>
       </div>
     </div>
   </section>
@@ -821,19 +822,19 @@
       <div class="reveal" style="text-align:center">
         <div class="section-label">Roadmap</div>
         <h2 class="section-title">Kommer snart</h2>
-        <p class="section-sub" style="color:rgba(255,255,255,0.55);margin:0 auto">Vi bygger de integrationer, mÃ¦glerne efterspÃ¸rger mest. Meld dig til ventelisten og vÃ¦r den fÃ¸rste.</p>
+        <p class="section-sub" style="color:rgba(255,255,255,0.55);margin:0 auto">Vi bygger de integrationer, mæglerne efterspørger mest. Meld dig til ventelisten og vær den første.</p>
       </div>
       <div class="roadmap-grid">
         <div class="roadmap-card reveal reveal-delay-1">
           <div class="roadmap-tag">Q3 2025</div>
           <h4>Mindworking-integration</h4>
-          <p>TrÃ¦t af at taste samme boligdata to steder? Automatisk boligimport fra Mindworking â boligen oprettes i Fremvis med Ã©t klik, direkte fra dit mÃ¦glersystem.</p>
+          <p>Træt af at taste samme boligdata to steder? Automatisk boligimport fra Mindworking â boligen oprettes i Fremvis med ét klik, direkte fra dit mæglersystem.</p>
           <button class="roadmap-waitlist-btn" onclick="openModal()">Meld dig til ventelisten</button>
         </div>
         <div class="roadmap-card reveal reveal-delay-2">
           <div class="roadmap-tag">Q4 2025</div>
           <h4>C&amp;B-integration</h4>
-          <p>Automatisk boligimport fra C&amp;B. Ingen manuel dataindtastning, ingen fejl. Boligdata flyder fra Ã©t system til det nÃ¦ste â meld dig til ventelisten.</p>
+          <p>Automatisk boligimport fra C&amp;B. Ingen manuel dataindtastning, ingen fejl. Boligdata flyder fra ét system til det næste â meld dig til ventelisten.</p>
           <button class="roadmap-waitlist-btn" onclick="openModal()">Meld dig til ventelisten</button>
         </div>
       </div>
@@ -843,10 +844,10 @@
   <section id="cta">
     <div class="container">
       <div class="reveal">
-        <h2>Kom i gang pÃ¥ 2 minutter</h2>
-        <p>Send din fÃ¸rste mail til ny@fremvis.dk og se systemet oprette fremvisningen for dig â inden din nÃ¦ste kop kaffe.</p>
+        <h2>Kom i gang på 2 minutter</h2>
+        <p>Send din første mail til ny@fremvis.dk og se systemet oprette fremvisningen for dig â inden din næste kop kaffe.</p>
         <div class="cta-actions">
-          <button class="btn-white" onclick="openModal()">PrÃ¸v gratis i 14 dage</button>
+          <button class="btn-white" onclick="openModal()">Prøv gratis i 14 dage</button>
           <button class="btn-outline-white" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">Se live demo</button>
         </div>
         <p class="cta-note">Ingen kreditkort Â· Ingen binding Â· Dansk support</p>
@@ -858,12 +859,12 @@
       <div class="footer-top">
         <div>
           <div class="footer-logo">Fremvis<span>.</span></div>
-          <p class="footer-tagline">Det simple fremvisningssystem, ejendomsmÃ¦glere har manglet. FÃ¦rre opkald, bedre overblik.</p>
+          <p class="footer-tagline">Det simple fremvisningssystem, ejendomsmæglere har manglet. Færre opkald, bedre overblik.</p>
           <div style="font-size:0.8125rem;color:rgba(255,255,255,0.25)">CVR: 44 XX XX XX</div>
         </div>
         <div class="footer-col"><h5>Produkt</h5><ul><li><a href="#features">Funktioner</a></li><li><a href="#pricing">Priser</a></li><li><a href="#demo">Demo</a></li><li><a href="#roadmap">Roadmap</a></li></ul></div>
         <div class="footer-col"><h5>Virksomhed</h5><ul><li><a href="#">Om Fremvis</a></li><li><a href="#">Blog</a></li><li><a href="#">Karriere</a></li><li><a href="#">Kontakt</a></li></ul></div>
-        <div class="footer-col"><h5>Juridisk</h5><ul><li><a href="#">Privatlivspolitik</a></li><li><a href="#">VilkÃ¥r og betingelser</a></li><li><a href="#">GDPR</a></li><li><a href="#">Cookies</a></li></ul></div>
+        <div class="footer-col"><h5>Juridisk</h5><ul><li><a href="#">Privatlivspolitik</a></li><li><a href="#">Vilkår og betingelser</a></li><li><a href="#">GDPR</a></li><li><a href="#">Cookies</a></li></ul></div>
       </div>
       <div class="footer-bottom">
         <p>&copy; 2024 Fremvis ApS Â· Bygget i Danmark</p>
@@ -874,20 +875,20 @@
   <div class="modal-overlay" id="signupModal" onclick="handleOverlayClick(event)">
     <div class="modal">
       <button class="modal-close" onclick="closeModal()"><i data-lucide="x" style="width:14px;height:14px"></i></button>
-      <h3>Start din gratis prÃ¸veperiode</h3>
-      <p>14 dage gratis. Ingen kreditkort. Opsig nÃ¥r som helst.</p>
+      <h3>Start din gratis prøveperiode</h3>
+      <p>14 dage gratis. Ingen kreditkort. Opsig når som helst.</p>
       <div id="modalForm">
         <div class="form-group"><label>Navn</label><input type="text" placeholder="Dit fulde navn" id="f-name" /></div>
         <div class="form-group"><label>E-mail</label><input type="email" placeholder="din@email.dk" id="f-email" /></div>
-        <div class="form-group"><label>MÃ¦glerkÃ¦de / kontor</label><input type="text" placeholder="f.eks. EDC, Home, selvstÃ¦ndig..." id="f-company" /></div>
-        <div class="form-group"><label>Antal mÃ¦glere</label><select id="f-size"><option value="">VÃ¦lg...</option><option>Kun mig (1)</option><option>2â5 mÃ¦glere</option><option>6â15 mÃ¦glere</option><option>16+ mÃ¦glere</option></select></div>
+        <div class="form-group"><label>Mæglerkæde / kontor</label><input type="text" placeholder="f.eks. EDC, Home, selvstændig..." id="f-company" /></div>
+        <div class="form-group"><label>Antal mæglere</label><select id="f-size"><option value="">Vælg...</option><option>Kun mig (1)</option><option>2â5 mæglere</option><option>6â15 mæglere</option><option>16+ mæglere</option></select></div>
         <button class="modal-btn" onclick="submitSignup()">Opret konto gratis</button>
-        <p style="text-align:center;font-size:0.8125rem;color:var(--text-muted);margin-top:12px">Ved tilmelding accepterer du vores <a href="#" style="color:var(--green)">vilkÃ¥r</a> og <a href="#" style="color:var(--green)">privatlivspolitik</a></p>
+        <p style="text-align:center;font-size:0.8125rem;color:var(--text-muted);margin-top:12px">Ved tilmelding accepterer du vores <a href="#" style="color:var(--green)">vilkår</a> og <a href="#" style="color:var(--green)">privatlivspolitik</a></p>
       </div>
       <div id="modalSuccess" style="display:none;text-align:center;padding:20px 0">
         <div style="width:56px;height:56px;background:var(--green-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--green)"><i data-lucide="check" style="width:26px;height:26px"></i></div>
         <h4 style="font-family:Inter,sans-serif;font-size:1.125rem;color:var(--navy);margin-bottom:8px">Vi ses snart</h4>
-        <p style="font-size:0.9rem;color:var(--text-secondary)">Vi har sendt dig en bekrÃ¦ftelsesmail. Din konto er klar inden for fÃ¥ minutter.</p>
+        <p style="font-size:0.9rem;color:var(--text-secondary)">Vi har sendt dig en bekræftelsesmail. Din konto er klar inden for få minutter.</p>
       </div>
     </div>
   </div>
@@ -920,7 +921,7 @@
     function toggleSlot(el) { el.classList.toggle('selected'); }
     function confirmSellerTimes() {
       var sel = document.querySelectorAll('#timeGrid .time-slot.selected').length;
-      if (sel === 0) { alert('VÃ¦lg mindst Ã©t tidspunkt'); return; }
+      if (sel === 0) { alert('Vælg mindst ét tidspunkt'); return; }
       document.getElementById('sellerConfirmBtn').style.display = 'none';
       document.getElementById('sellerConfirmation').classList.add('show');
       lucide.createIcons();
@@ -932,7 +933,7 @@
       el.querySelector('i').setAttribute('data-lucide', 'check');
       lucide.createIcons();
       var times = ['Mandag 16. juni kl. 14:00', 'Tirsdag 17. juni kl. 17:00', 'Fredag 20. juni kl. 10:00'];
-      document.getElementById('buyerConfirmationText').textContent = 'Du er booket til ' + times[idx] + ', Strandvejen 142. BekrÃ¦ftelse sendes pÃ¥ e-mail og SMS.';
+      document.getElementById('buyerConfirmationText').textContent = 'Du er booket til ' + times[idx] + ', Strandvejen 142. Bekræftelse sendes på e-mail og SMS.';
       document.getElementById('buyerConfirmation').classList.add('show');
     }
     function openModal() { document.getElementById('signupModal').classList.add('open'); document.body.style.overflow = 'hidden'; }
