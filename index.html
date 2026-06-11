@@ -749,5 +749,147 @@
   function handleFooterSignup() { const input = document.getElementById('footer-email-input'); if (input.value) { openModal(); } }
   lucide.createIcons();
 </script>
+
+<!-- ============================================================
+     FREMVIS ADMIN PANEL — injected
+     Tilgås via: fremvis.vercel.app/#admin
+     ============================================================ -->
+<style>
+  #fremvis-admin-root { display:none; position:fixed; inset:0; z-index:9999; font-family:'Inter',sans-serif; }
+  #fremvis-admin-root.active { display:block; }
+  #admin-login { display:flex; align-items:center; justify-content:center; min-height:100vh; background:#1a2e4a; padding:24px; }
+  .admin-login-card { background:#ffffff; border-radius:12px; padding:40px 36px; width:100%; max-width:400px; box-shadow:0 20px 60px rgba(0,0,0,0.3); }
+  .admin-login-logo { font-family:'Instrument Serif',serif; font-size:1.75rem; color:#1a2e4a; letter-spacing:-0.02em; text-align:center; margin-bottom:4px; }
+  .admin-login-logo span { color:#2d7a4f; }
+  .admin-login-badge { text-align:center; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.12em; color:#9ca3af; margin-bottom:32px; }
+  .admin-form-group { margin-bottom:16px; }
+  .admin-form-group label { display:block; font-size:0.8125rem; font-weight:600; color:#1a2e4a; margin-bottom:6px; }
+  .admin-form-group input { width:100%; padding:11px 14px; border:1.5px solid #e5e7eb; border-radius:8px; font-family:'Inter',sans-serif; font-size:0.9375rem; color:#1a2e4a; background:#ffffff; outline:none; transition:border-color 0.2s; box-sizing:border-box; }
+  .admin-form-group input:focus { border-color:#2d7a4f; }
+  .admin-login-btn { width:100%; background:#1a2e4a; color:#ffffff; padding:13px; border-radius:8px; font-weight:700; font-family:'Inter',sans-serif; font-size:0.9375rem; cursor:pointer; border:none; margin-top:8px; transition:background 0.2s; }
+  .admin-login-btn:hover { background:#243d62; }
+  .admin-login-error { display:none; background:#fef2f2; border:1px solid #fecaca; color:#dc2626; font-size:0.8125rem; font-weight:500; padding:10px 14px; border-radius:6px; margin-top:12px; text-align:center; }
+  .admin-login-error.show { display:block; }
+  #admin-dashboard { display:none; min-height:100vh; background:#f3f4f6; flex-direction:column; }
+  #admin-dashboard.visible { display:flex; }
+  .admin-header { background:#1a2e4a; padding:0 32px; height:60px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+  .admin-header-logo { font-family:'Instrument Serif',serif; font-size:1.25rem; color:#ffffff; letter-spacing:-0.02em; display:flex; align-items:center; gap:10px; }
+  .admin-header-logo span { color:#2d7a4f; }
+  .admin-header-badge { font-size:0.6875rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; background:rgba(45,122,79,0.25); color:#6ee7a0; padding:3px 10px; border-radius:100px; }
+  .admin-logout-btn { background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.8); border:1px solid rgba(255,255,255,0.15); padding:7px 16px; border-radius:6px; font-size:0.8125rem; font-weight:600; font-family:'Inter',sans-serif; cursor:pointer; display:flex; align-items:center; gap:7px; transition:all 0.2s; }
+  .admin-logout-btn:hover { background:rgba(255,255,255,0.18); color:#ffffff; }
+  .admin-body { padding:32px; max-width:1100px; width:100%; margin:0 auto; flex:1; }
+  .admin-page-title { font-family:'Instrument Serif',serif; font-size:1.75rem; color:#1a2e4a; letter-spacing:-0.02em; margin-bottom:4px; }
+  .admin-page-sub { font-size:0.875rem; color:#9ca3af; margin-bottom:28px; }
+  .admin-stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:28px; }
+  .admin-stat-card { background:#ffffff; border:1px solid #e5e7eb; border-radius:10px; padding:24px 20px; }
+  .admin-stat-label { font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af; margin-bottom:8px; }
+  .admin-stat-value { font-family:'Instrument Serif',serif; font-size:2.25rem; color:#1a2e4a; line-height:1; letter-spacing:-0.02em; }
+  .admin-stat-value.muted { color:#9ca3af; font-size:1.75rem; }
+  .admin-section-heading { font-family:'Inter',sans-serif; font-size:0.875rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af; margin-bottom:12px; margin-top:28px; }
+  .admin-table-card { background:#ffffff; border:1px solid #e5e7eb; border-radius:10px; overflow:hidden; margin-bottom:24px; }
+  .admin-table-header { padding:16px 20px; border-bottom:1px solid #f3f4f6; display:flex; align-items:center; justify-content:space-between; }
+  .admin-table-title { font-size:0.9375rem; font-weight:600; color:#1a2e4a; display:flex; align-items:center; gap:8px; }
+  .admin-count-badge { background:#f3f4f6; color:#9ca3af; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:100px; }
+  .admin-table { width:100%; border-collapse:collapse; }
+  .admin-table th { text-align:left; font-size:0.6875rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#9ca3af; padding:10px 20px; border-bottom:1px solid #f3f4f6; background:#fafafa; }
+  .admin-table td { padding:14px 20px; font-size:0.875rem; color:#1a2e4a; border-bottom:1px solid #f9fafb; }
+  .admin-empty-state { padding:48px 20px; text-align:center; color:#9ca3af; font-size:0.9rem; line-height:1.7; }
+  .admin-links-card { background:#ffffff; border:1px solid #e5e7eb; border-radius:10px; overflow:hidden; margin-bottom:24px; }
+  .admin-link-row { display:flex; align-items:center; justify-content:space-between; padding:14px 20px; border-bottom:1px solid #f9fafb; text-decoration:none; transition:background 0.15s; }
+  .admin-link-row:last-child { border-bottom:none; }
+  .admin-link-row:hover { background:#f9fafb; }
+  .admin-link-label { font-size:0.9rem; font-weight:500; color:#1a2e4a; display:flex; align-items:center; gap:10px; }
+  .admin-link-arrow { color:#c4905a; }
+  .admin-footer { background:#1a2e4a; padding:16px 32px; font-size:0.75rem; color:rgba(255,255,255,0.3); text-align:center; flex-shrink:0; }
+  @media (max-width:640px) { .admin-stats-row { grid-template-columns:1fr; } .admin-body { padding:20px 16px; } .admin-header { padding:0 16px; } }
+</style>
+<div id="fremvis-admin-root">
+  <div id="admin-login">
+    <div class="admin-login-card">
+      <div class="admin-login-logo">Fremvis<span>.</span></div>
+      <div class="admin-login-badge">Admin</div>
+      <div class="admin-form-group"><label for="admin-email">E-mail</label><input type="email" id="admin-email" value="admin@fremvis.dk" autocomplete="email" /></div>
+      <div class="admin-form-group"><label for="admin-password">Adgangskode</label><input type="password" id="admin-password" placeholder="••••••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter') adminLogin()" /></div>
+      <button class="admin-login-btn" onclick="adminLogin()">Log ind</button>
+      <div class="admin-login-error" id="admin-login-error">Forkert email eller adgangskode</div>
+    </div>
+  </div>
+  <div id="admin-dashboard">
+    <div class="admin-header">
+      <div class="admin-header-logo">Fremvis<span>.</span><span class="admin-header-badge">Admin</span></div>
+      <button class="admin-logout-btn" onclick="adminLogout()"><i data-lucide="log-out" style="width:14px;height:14px"></i>Log ud</button>
+    </div>
+    <div class="admin-body">
+      <div class="admin-page-title">Dashboard</div>
+      <div class="admin-page-sub">Overblik over beta-tilmeldinger og aktivitet</div>
+      <div class="admin-stats-row">
+        <div class="admin-stat-card"><div class="admin-stat-label">Beta-tilmeldinger</div><div class="admin-stat-value">0</div></div>
+        <div class="admin-stat-card"><div class="admin-stat-label">Denne uge</div><div class="admin-stat-value">0</div></div>
+        <div class="admin-stat-card"><div class="admin-stat-label">Konverteringsrate</div><div class="admin-stat-value muted">—</div></div>
+      </div>
+      <div class="admin-section-heading">Beta-tilmeldinger</div>
+      <div class="admin-table-card">
+        <div class="admin-table-header"><div class="admin-table-title"><i data-lucide="users" style="width:16px;height:16px;color:#2d7a4f"></i>Tilmeldinger<span class="admin-count-badge">0</span></div></div>
+        <table class="admin-table">
+          <thead><tr><th>Navn</th><th>Email</th><th>Firma</th><th>Dato</th><th>Status</th></tr></thead>
+          <tbody><tr><td colspan="5"><div class="admin-empty-state">Ingen tilmeldinger endnu — del siden og se dem dukke op her.</div></td></tr></tbody>
+        </table>
+      </div>
+      <div class="admin-section-heading">Hurtige links</div>
+      <div class="admin-links-card">
+        <a href="https://fremvis.vercel.app" target="_blank" class="admin-link-row"><span class="admin-link-label"><i data-lucide="globe" style="width:16px;height:16px"></i>Åbn fremvis.vercel.app</span><i data-lucide="external-link" class="admin-link-arrow" style="width:15px;height:15px"></i></a>
+        <a href="https://github.com/mikkelstreet-png/Fremvis" target="_blank" class="admin-link-row"><span class="admin-link-label"><i data-lucide="github" style="width:16px;height:16px"></i>GitHub repo</span><i data-lucide="external-link" class="admin-link-arrow" style="width:15px;height:15px"></i></a>
+        <a href="https://vercel.com" target="_blank" class="admin-link-row"><span class="admin-link-label"><i data-lucide="triangle" style="width:16px;height:16px"></i>Vercel dashboard</span><i data-lucide="external-link" class="admin-link-arrow" style="width:15px;height:15px"></i></a>
+      </div>
+    </div>
+    <div class="admin-footer">Fremvis Admin v1.0 — Kun til intern brug</div>
+  </div>
+</div>
+<script>
+(function(){
+  var E='admin@fremvis.dk',P='Fremvis2025!',K='fremvis_admin_auth';
+  function showAdmin(){
+    document.querySelectorAll('body > *:not(#fremvis-admin-root)').forEach(function(el){el.style.display='none';});
+    document.getElementById('fremvis-admin-root').classList.add('active');
+    if(sessionStorage.getItem(K)==='1'){showDashboard();}else{showLogin();}
+    if(typeof lucide!=='undefined')lucide.createIcons();
+  }
+  function hideAdmin(){
+    document.getElementById('fremvis-admin-root').classList.remove('active');
+    document.querySelectorAll('body > *:not(#fremvis-admin-root)').forEach(function(el){el.style.display='';});
+  }
+  function showLogin(){
+    document.getElementById('admin-login').style.display='flex';
+    document.getElementById('admin-dashboard').classList.remove('visible');
+    document.getElementById('admin-login-error').classList.remove('show');
+  }
+  function showDashboard(){
+    document.getElementById('admin-login').style.display='none';
+    document.getElementById('admin-dashboard').classList.add('visible');
+    if(typeof lucide!=='undefined')lucide.createIcons();
+  }
+  window.adminLogin=function(){
+    var email=document.getElementById('admin-email').value.trim();
+    var password=document.getElementById('admin-password').value;
+    if(email===E&&password===P){
+      sessionStorage.setItem(K,'1');
+      document.getElementById('admin-login-error').classList.remove('show');
+      showDashboard();
+    }else{
+      document.getElementById('admin-login-error').classList.add('show');
+      document.getElementById('admin-password').value='';
+      document.getElementById('admin-password').focus();
+    }
+  };
+  window.adminLogout=function(){sessionStorage.removeItem(K);showLogin();};
+  function checkHash(){
+    if(window.location.hash==='#admin'){showAdmin();}
+    else if(document.getElementById('fremvis-admin-root').classList.contains('active')){hideAdmin();}
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',checkHash);}else{checkHash();}
+  window.addEventListener('hashchange',checkHash);
+})();
+</script>
 </body>
 </html>
