@@ -262,7 +262,7 @@
     /* C1: Calendar sync badge */
     .calendar-sync-badge { display: inline-flex; align-items: center; gap: 8px; background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; padding: 6px 16px; border-radius: 100px; font-size: 0.8125rem; font-weight: 600; margin-bottom: 48px; }
     /* C8: Hero metric display */
-    .hero-metric-wrap { display: flex; justify-content: center; margin-bottom: 36px; }
+    .hero-metric-wrap { display: flex; justify-content: center; margin-top: 48px; margin-bottom: 48px; }
     .hero-metric { display: inline-flex; align-items: center; gap: 16px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 16px 28px; box-shadow: var(--shadow-md); position: relative; }
     .metric-number { font-family: 'Instrument Serif', serif; font-size: 3rem; color: var(--navy); line-height: 1; letter-spacing: -0.03em; }
     .metric-unit { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: var(--navy); }
@@ -479,7 +479,7 @@
         <div class="feature-card reveal reveal-delay-2">
           <div class="feature-icon"><i data-lucide="users" style="width:22px;height:22px"></i></div>
           <h3>Venteliste — ingen køber misses</h3>
-          <p>Fuldt booket? Køber sættes automatisk på venteliste og får besked med det samme ved aflysning. <strong style="color:var(--navy)">"2 pladser tilbage"</strong> → fuldt → venteliste → automatisk besked. Ingen manuelle opfølgninger.</p>
+          <p>Fuldt booket? Køber sættes automatisk på venteliste og får besked med det samme ved aflysning. <strong style="color:var(--navy)">"2 pladser tilbage"</strong> <i data-lucide="chevron-right" style="width:12px;height:12px;vertical-align:-1px;margin-right:2px"></i>fuldt <i data-lucide="chevron-right" style="width:12px;height:12px;vertical-align:-1px;margin-right:2px"></i>venteliste <i data-lucide="chevron-right" style="width:12px;height:12px;vertical-align:-1px;margin-right:2px"></i>automatisk besked. Ingen manuelle opfølgninger.</p>
         </div>
         <!-- C6: Feedback-SMS -->
         <div class="feature-card reveal reveal-delay-3">
@@ -531,13 +531,13 @@
                   Scenario: Sælger aflyser kl. 11 — fremvisning om 3 timer (Strandvejen 142)
                 </div>
                 <div class="cancellation-flow">
-                  <div class="flow-step"><div>📱 Sælger aflyser</div><div class="fl">via SMS-link</div></div>
-                  <div class="flow-arrow">→</div>
-                  <div class="flow-step"><div>🤖 Alle bookede købere</div><div class="fl">notificeres automatisk</div></div>
-                  <div class="flow-arrow">→</div>
-                  <div class="flow-step"><div>📅 Ny tid tilbydes</div><div class="fl">ét klik for mægler</div></div>
-                  <div class="flow-arrow">→</div>
-                  <div class="flow-step complete"><div>✓ Ombooket</div><div class="fl">på 2 minutter</div></div>
+                  <div class="flow-step"><div><i data-lucide="smartphone" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px"></i>Sælger aflyser</div><div class="fl">via SMS-link</div></div>
+                  <div class="flow-arrow"><i data-lucide="arrow-right" style="width:16px;height:16px"></i></div>
+                  <div class="flow-step"><div><i data-lucide="bot" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px"></i>Alle bookede købere</div><div class="fl">notificeres automatisk</div></div>
+                  <div class="flow-arrow"><i data-lucide="arrow-right" style="width:16px;height:16px"></i></div>
+                  <div class="flow-step"><div><i data-lucide="calendar" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px"></i>Ny tid tilbydes</div><div class="fl">ét klik for mægler</div></div>
+                  <div class="flow-arrow"><i data-lucide="arrow-right" style="width:16px;height:16px"></i></div>
+                  <div class="flow-step complete"><div><i data-lucide="check" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px"></i>Ombooket</div><div class="fl">på 2 minutter</div></div>
                 </div>
                 <div style="margin-top:10px;font-size:0.8125rem;color:#92400e">En aflysning koster normalt 30–45 min mæglertid i opkald og ombooking. Med Fremvis: 2 minutter.</div>
               </div>
@@ -575,7 +575,7 @@
               <p style="font-size:0.875rem;font-weight:600;color:var(--navy);margin-bottom:12px">Vælg en tid der passer dig:</p>
               <div class="buyer-slots" id="buyerSlots">
                 <div class="buyer-slot" onclick="bookSlot(this,0)"><div><div class="slot-info">Mandag 16. juni kl. 14:00–15:00</div><div class="slot-spots">2 pladser tilbage</div></div><i data-lucide="arrow-right" style="width:16px;height:16px;color:var(--green)"></i></div>
-                <div class="buyer-slot" onclick="bookSlot(this,1)"><div><div class="slot-info">Tirsdag 17. juni kl. 17:00–18:00</div><div class="slot-spots">Fuldt booket</div><div style="font-size:0.75rem;color:var(--gold);font-weight:600;margin-top:2px">→ Sæt dig på venteliste — automatisk besked ved aflysning</div></div><i data-lucide="arrow-right" style="width:16px;height:16px;color:var(--gold)"></i></div>
+                <div class="buyer-slot" onclick="bookSlot(this,1)"><div><div class="slot-info">Tirsdag 17. juni kl. 17:00–18:00</div><div class="slot-spots">Fuldt booket</div><div style="font-size:0.75rem;color:var(--gold);font-weight:600;margin-top:2px"><i data-lucide="arrow-right" style="width:12px;height:12px;vertical-align:-1px;margin-right:3px"></i>Sæt dig på venteliste — automatisk besked ved aflysning</div></div><i data-lucide="arrow-right" style="width:16px;height:16px;color:var(--gold)"></i></div>
                 <div class="buyer-slot" onclick="bookSlot(this,2)"><div><div class="slot-info">Fredag 20. juni kl. 10:00–11:00</div><div class="slot-spots">4 pladser tilbage</div></div><i data-lucide="arrow-right" style="width:16px;height:16px;color:var(--green)"></i></div>
               </div>
               <div id="buyerConfirmation" class="confirmation-box"><h4>Fremvisning booket</h4><p id="buyerConfirmationText">Du modtager en bekræftelse på e-mail og SMS inden for et øjeblik.</p></div>
@@ -648,17 +648,17 @@
       </div>
       <div class="testimonials-grid">
         <div class="testimonial reveal reveal-delay-1">
-          <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+          <div class="stars"><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span></div>
           <p class="testimonial-text">Fremvis har ændret min arbejdsdag fuldstændigt. Jeg brugte nemt 2 timer om ugen på at koordinere fremvisninger per telefon. Nu sker det hele automatisk, og jeg har pludselig tid til det, der faktisk skaber salg.</p>
           <div class="testimonial-author"><div class="author-avatar">MK</div><div><div class="author-name">Mads, selvstændig mægler</div><div class="author-role">Beta-bruger siden 2024</div></div></div>
         </div>
         <div class="testimonial reveal reveal-delay-2">
-          <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+          <div class="stars"><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span></div>
           <p class="testimonial-text">Vores sælgere er vilde med det. De kan godkende tider fra telefonen på to minutter, og de får automatisk besked, når nogen booker. Vi får næsten ingen statusopkald mere — det er guld værd.</p>
           <div class="testimonial-author"><div class="author-avatar">TN</div><div><div class="author-name">Thomas, partner i lille kontor</div><div class="author-role">Beta-bruger siden 2024</div></div></div>
         </div>
         <div class="testimonial reveal reveal-delay-3">
-          <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+          <div class="stars"><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span><span class="star"><i data-lucide="star" style="width:14px;height:14px;fill:var(--gold);color:var(--gold)"></i></span></div>
           <p class="testimonial-text">AI-opsummeringen er genial. Jeg kan i ét blik se, at "Køber 3 spurgte til prisen to gange og bad om tegninger" — den slags nuancer glemte jeg altid at skrive ned. Nu er det bare der automatisk.</p>
           <div class="testimonial-author"><div class="author-avatar">SL</div><div><div class="author-name">Sofie, selvstændig mægler</div><div class="author-role">Beta-bruger siden 2024</div></div></div>
         </div>
