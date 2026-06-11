@@ -3,11 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fremvis – Det simple fremvisningssystem</title>
+<title>Fremvis – Fremvisningsbooking til danske ejendomsmæglere</title>
+<meta name="description" content="Fremvis er det simple fremvisningsbookingsystem til danske ejendomsmæglere. Send én mail — vi klarer resten.">
+<meta property="og:title" content="Fremvis – Fremvisningsbooking til ejendomsmæglere">
+<meta property="og:description" content="Send én mail. Vi klarer resten. Færre opkald, bedre overblik, styr på nøgler.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://unpkg.com/lucide@latest">
+
+  // Login modal
+  function openLoginModal(e) { if(e) e.preventDefault(); document.getElementById('loginModal').classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeLoginModal() { document.getElementById('loginModal').classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('loginModal').addEventListener('click', function(e){ if(e.target===this) closeLoginModal(); });
+
+  // Beta toast
+  function showBetaToast() {
+    const t = document.getElementById('betaToast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  // Beta signup form
+  function submitBeta(e) {
+    e.preventDefault();
+    showBetaToast();
+    e.target.reset();
+  }
+
+  // Cookie banner
+  function initCookies() {
+    try { if (!localStorage.getItem('cookiesAccepted')) document.getElementById('cookieBanner').classList.add('show'); } catch(e) {}
+  }
+  function acceptCookies() {
+    try { localStorage.setItem('cookiesAccepted','1'); } catch(e) {}
+    document.getElementById('cookieBanner').classList.remove('show');
+  }
+  initCookies();
+
+  // Privacy modal
+  function openPrivacy(e) { if(e) e.preventDefault(); document.getElementById('privacyModal').classList.add('open'); }
+  function closePrivacy() { document.getElementById('privacyModal').classList.remove('open'); }
+  document.getElementById('privacyModal').addEventListener('click', function(e){ if(e.target===this) closePrivacy(); });
+
+  // Terms modal
+  function openTerms(e) { if(e) e.preventDefault(); document.getElementById('termsModal').classList.add('open'); }
+  function closeTerms() { document.getElementById('termsModal').classList.remove('open'); }
+  document.getElementById('termsModal').addEventListener('click', function(e){ if(e.target===this) closeTerms(); });
+
+  // Cookie settings (reshow banner)
+  function openCookieSettings(e) { if(e) e.preventDefault(); document.getElementById('cookieBanner').classList.add('show'); }
+
+  // FAQ accordion
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+</script>
 <style>
   :root {
     --navy: #1a2e4a;
@@ -201,11 +257,92 @@
   @media (max-width: 600px) {
     .features-grid { grid-template-columns: 1fr; } .metric-items { grid-template-columns: 1fr; } .hero-headline { font-size: 40px; } .footer-inner { flex-direction: column; text-align: center; } .footer-links { justify-content: center; }
   }
+
+/* === LAUNCH-READY ADDITIONS === */
+.announcement-bar--gold { background: #F5C842 !important; color: var(--navy) !important; }
+.announcement-bar--gold span { color: var(--navy) !important; }
+
+/* Roadmap badge */
+.roadmap-badge { display:inline-block; background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.7); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:3px 10px; border-radius:20px; border:1px solid rgba(255,255,255,0.2); }
+
+/* Nav login */
+.nav-login { border:1.5px solid var(--navy) !important; border-radius:8px !important; padding:6px 16px !important; color:var(--navy) !important; font-weight:600 !important; transition:all .2s; }
+.nav-login:hover { background:var(--navy) !important; color:white !important; }
+
+/* Beta section */
+.beta-section { background: linear-gradient(135deg, #f8f9fa 0%, #e8f4fd 100%); padding:80px 0; text-align:center; }
+.beta-form { max-width:480px; margin:32px auto 0; }
+.beta-form-row { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+.beta-input { flex:1; min-width:220px; padding:14px 18px; border:1.5px solid #d0dbe8; border-radius:10px; font-size:15px; outline:none; transition:border .2s; }
+.beta-input:focus { border-color:var(--green); }
+.beta-note { margin-top:14px; font-size:13px; color:#7a8a99; }
+
+/* Payment icons */
+.payment-icons { display:flex; align-items:center; gap:8px; justify-content:center; margin-top:10px; }
+.payment-icons svg { height:22px; }
+.payment-note { font-size:12px; color:#7a8a99; margin-top:6px; text-align:center; }
+.pricing-trial { font-size:13px; color:var(--green); font-weight:600; margin-top:4px; text-align:center; }
+
+/* FAQ Accordion */
+.faq-section { max-width:640px; margin:60px auto 0; text-align:left; }
+.faq-section h3 { font-size:22px; font-weight:700; color:var(--navy); margin-bottom:20px; text-align:center; }
+.faq-item { border-bottom:1px solid #e0e8f0; }
+.faq-q { width:100%; background:none; border:none; text-align:left; padding:16px 0; font-size:15px; font-weight:600; color:var(--navy); cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
+.faq-q:after { content:'+'; font-size:20px; font-weight:400; color:var(--green); transition:transform .2s; }
+.faq-item.open .faq-q:after { content:'−'; }
+.faq-a { display:none; padding:0 0 16px; font-size:14px; color:#4a5568; line-height:1.6; }
+.faq-item.open .faq-a { display:block; }
+.stripe-note { text-align:center; margin-top:20px; font-size:13px; color:#7a8a99; }
+
+/* Login modal */
+.login-modal-overlay { display:none; position:fixed; inset:0; background:rgba(10,25,47,0.6); z-index:9999; align-items:center; justify-content:center; }
+.login-modal-overlay.open { display:flex; }
+.login-modal { background:#fff; border-radius:16px; padding:40px; max-width:420px; width:90%; box-shadow:0 24px 80px rgba(0,0,0,0.18); position:relative; }
+.login-modal h3 { font-size:22px; font-weight:700; color:var(--navy); margin-bottom:6px; }
+.login-modal .modal-sub { font-size:14px; color:#7a8a99; margin-bottom:24px; }
+.login-field { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+.login-field label { font-size:13px; font-weight:600; color:#4a5568; }
+.login-field input { padding:12px 14px; border:1.5px solid #d0dbe8; border-radius:8px; font-size:15px; outline:none; transition:border .2s; }
+.login-field input:focus { border-color:var(--green); }
+.login-btn-primary { width:100%; padding:14px; background:var(--green); color:#fff; border:none; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer; margin-top:4px; transition:opacity .2s; }
+.login-btn-primary:hover { opacity:.9; }
+.forgot-link { display:block; text-align:center; margin-top:12px; font-size:13px; color:var(--green); text-decoration:none; cursor:pointer; }
+.login-sep { text-align:center; margin:20px 0 16px; font-size:13px; color:#a0aec0; }
+.login-signup { display:block; width:100%; padding:12px; border:1.5px solid var(--navy); background:none; border-radius:10px; font-size:14px; font-weight:600; color:var(--navy); cursor:pointer; transition:all .2s; text-align:center; }
+.login-signup:hover { background:var(--navy); color:#fff; }
+.modal-close-btn { position:absolute; top:16px; right:16px; background:none; border:none; cursor:pointer; color:#a0aec0; font-size:20px; line-height:1; }
+
+/* Toast */
+.toast { position:fixed; bottom:100px; left:50%; transform:translateX(-50%); background:var(--navy); color:#fff; padding:12px 24px; border-radius:10px; font-size:14px; font-weight:500; z-index:99999; opacity:0; transition:opacity .3s; pointer-events:none; white-space:nowrap; }
+.toast.show { opacity:1; }
+
+/* Cookie banner */
+.cookie-banner { display:none; position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#fff; box-shadow:0 8px 40px rgba(0,0,0,0.14); border-radius:12px; padding:20px 24px; max-width:480px; width:calc(100% - 48px); z-index:9000; }
+.cookie-banner.show { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+.cookie-banner p { margin:0; flex:1; min-width:200px; font-size:14px; color:#4a5568; }
+.cookie-banner-btns { display:flex; gap:8px; }
+.cookie-btn-accept { padding:8px 18px; background:var(--green); color:#fff; border:none; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; }
+.cookie-btn-minimal { padding:8px 18px; border:1.5px solid #d0dbe8; background:none; border-radius:8px; font-size:13px; font-weight:600; color:#4a5568; cursor:pointer; }
+
+/* Legal modals */
+.legal-overlay { display:none; position:fixed; inset:0; background:rgba(10,25,47,0.6); z-index:9999; align-items:flex-start; justify-content:center; padding-top:60px; overflow-y:auto; }
+.legal-overlay.open { display:flex; }
+.legal-modal { background:#fff; border-radius:16px; padding:40px; max-width:560px; width:90%; box-shadow:0 24px 80px rgba(0,0,0,0.18); position:relative; margin-bottom:40px; }
+.legal-modal h3 { font-size:22px; font-weight:700; color:var(--navy); margin-bottom:20px; }
+.legal-modal p, .legal-modal li { font-size:14px; color:#4a5568; line-height:1.7; }
+.legal-modal ul { padding-left:20px; margin:12px 0; }
+.legal-updated { font-size:12px; color:#a0aec0; margin-top:20px; }
+
+/* Footer updates */
+.footer-contact { font-size:14px; color:rgba(255,255,255,0.7); margin-top:8px; }
+.footer-copy { font-size:13px; color:rgba(255,255,255,0.5); margin-top:6px; }
+.footer-cvr { font-size:12px; color:rgba(255,255,255,0.3); margin-top:4px; }
+
 </style>
 </head>
 <body>
 <div id="scroll-progress"></div>
-<div class="announcement-bar"><span><i data-lucide="map-pin"></i> Designet til danske ejendomsmæglere</span></div>
+<div class="announcement-bar announcement-bar--gold"><span>Tidlig adgang åben nu – begrænsede pladser</span></div>
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-logo">Fremvis</a>
@@ -215,6 +352,7 @@
       <li><a href="#pricing">Priser</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="#" class="nav-cta" onclick="openModal()">Prøv gratis</a></li>
+      <li><a href="#" class="nav-login" onclick="openLoginModal(event)">Log ind</a></li>
     </ul>
   </div>
 </nav>
@@ -367,15 +505,18 @@
     </div>
   </div>
 </section>
-<section class="testimonials" id="testimonials">
+<section class="beta-section" id="beta">
   <div class="container">
-    <span class="section-label">Hvad mæglere siger</span>
-    <h2>Resultater, man mærker</h2>
-    <div class="testimonial-grid">
-      <div class="testimonial-card"><div class="stars">★★★★★</div><span class="quote-mark">"</span><p class="testimonial-text">Jeg sparer mindst en time om dagen. Sælgerne elsker at de automatisk får besked – de ringer næsten ikke mere.</p><div class="testimonial-author">Mads</div><div class="testimonial-role">Selvstændig mægler, 8 år</div></div>
-      <div class="testimonial-card"><div class="stars">★★★★★</div><span class="quote-mark">"</span><p class="testimonial-text">Nøgleregistreringen alene er guld værd. Vi havde konstant forvirring om hvem der havde nøglerne.</p><div class="testimonial-author">Sofie</div><div class="testimonial-role">Mægler</div></div>
-      <div class="testimonial-card"><div class="stars">★★★★★</div><span class="quote-mark">"</span><p class="testimonial-text">Det bedste er feedback-flowet efter fremvisning. Det tager 10 sekunder og sælger er altid opdateret.</p><div class="testimonial-author">Kasper</div><div class="testimonial-role">Mægler</div></div>
-    </div>
+    <span class="section-label">Beta</span>
+    <h2>Fremvis er i beta</h2>
+    <p class="section-sub">Vi er i gang med at onboarde de første mæglere. Er du interesseret i tidlig adgang?</p>
+    <form class="beta-form" onsubmit="submitBeta(event)">
+      <div class="beta-form-row">
+        <input type="email" class="beta-input" placeholder="Din email-adresse" required>
+        <button type="submit" class="btn-primary">Få tidlig adgang</button>
+      </div>
+      <p class="beta-note">Ingen kreditkort krævet. Vi kontakter dig personligt.</p>
+    </form>
   </div>
 </section>
 <section class="pricing" id="pricing">
@@ -398,7 +539,13 @@
           <li><i data-lucide="check"></i>Nøgleoverblik</li>
           <li><i data-lucide="check"></i>14 dages gratis prøveperiode</li>
         </ul>
-        <button class="btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Prøv gratis</button>
+        <p class="pricing-trial">14 dages gratis prøveperiode, herefter kr 299/måned</p>
+        <button class="btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Start gratis prøveperiode</button>
+        <div class="payment-icons">
+          <svg viewBox="0 0 50 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="32" rx="4" fill="#1A1F71"/><text x="25" y="21" font-size="11" font-weight="700" fill="white" text-anchor="middle" font-family="Arial">VISA</text></svg>
+          <svg viewBox="0 0 50 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="32" rx="4" fill="#EB001B" opacity="0.9"/><circle cx="19" cy="16" r="10" fill="#EB001B"/><circle cx="31" cy="16" r="10" fill="#F79E1B"/><path d="M25 8.5a10 10 0 0 1 0 15 10 10 0 0 1 0-15z" fill="#FF5F00"/></svg>
+        </div>
+        <p class="payment-note">Betal med kort</p>
       </div>
       <div class="pricing-card popular">
         <div class="popular-badge">Mest populær</div>
@@ -415,7 +562,13 @@
           <li><i data-lucide="check"></i>Prioriteret support</li>
           <li><i data-lucide="check"></i>14 dages gratis prøveperiode</li>
         </ul>
-        <button class="btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Prøv gratis</button>
+        <p class="pricing-trial">14 dages gratis prøveperiode, herefter kr 799/måned</p>
+        <button class="btn-primary" style="width:100%;justify-content:center;" onclick="openModal()">Start gratis prøveperiode</button>
+        <div class="payment-icons">
+          <svg viewBox="0 0 50 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="32" rx="4" fill="#1A1F71"/><text x="25" y="21" font-size="11" font-weight="700" fill="white" text-anchor="middle" font-family="Arial">VISA</text></svg>
+          <svg viewBox="0 0 50 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="32" rx="4" fill="#EB001B" opacity="0.9"/><circle cx="19" cy="16" r="10" fill="#EB001B"/><circle cx="31" cy="16" r="10" fill="#F79E1B"/><path d="M25 8.5a10 10 0 0 1 0 15 10 10 0 0 1 0-15z" fill="#FF5F00"/></svg>
+        </div>
+        <p class="payment-note">Betal med kort</p>
       </div>
       <div class="pricing-card">
         <div class="pricing-plan">Kæde</div>
@@ -441,8 +594,8 @@
     <h2>Hvad der kommer</h2>
     <p class="section-sub" style="color:rgba(255,255,255,0.6);">Vi bygger tæt sammen med mæglere. Din feedback former prioriteterne.</p>
     <div class="roadmap-grid">
-      <div class="roadmap-item"><div class="roadmap-icon"><i data-lucide="link"></i></div><div class="roadmap-quarter">Q3 2025</div><h3>Mindworking-integration</h3><p>Automatisk boligimport direkte fra Mindworking. Ingen manuel datainput — adresse, pris og sælger importeres automatisk.</p></div>
-      <div class="roadmap-item"><div class="roadmap-icon"><i data-lucide="database"></i></div><div class="roadmap-quarter">Q4 2025</div><h3>C&amp;B-integration</h3><p>Direkte kobling til C&amp;B-systemet. Fremvisninger, sælgerdata og leads synkroniserer automatisk.</p></div>
+      <div class="roadmap-item"><div class="roadmap-icon"><i data-lucide="link"></i></div><div class="roadmap-badge">Roadmap</div><h3>Mindworking-integration</h3><p>Automatisk boligimport direkte fra Mindworking. Ingen manuel datainput — adresse, pris og sælger importeres automatisk.</p></div>
+      <div class="roadmap-item"><div class="roadmap-icon"><i data-lucide="database"></i></div><div class="roadmap-badge">Roadmap</div><h3>C&amp;B-integration</h3><p>Direkte kobling til C&amp;B-systemet. Fremvisninger, sælgerdata og leads synkroniserer automatisk.</p></div>
       <div class="roadmap-item"><div class="roadmap-icon"><i data-lucide="calendar-plus"></i></div><div class="roadmap-quarter">2026</div><h3>Outlook og Google add-in</h3><p>Opret fremvisning direkte fra din kalender. Ingen skift af fane — ét klik fra Outlook eller Google Calendar.</p></div>
     </div>
   </div>
@@ -453,13 +606,45 @@
     <p>Send din første mail nu. Fremvis klarer resten.</p>
     <div class="footer-email"><input type="email" placeholder="din@mail.dk" id="footer-email-input"><button onclick="handleFooterSignup()">Kom i gang</button></div>
     <p style="font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:0;">14 dages gratis prøveperiode. Intet kreditkort krævet.</p>
+  
+    <p class="stripe-note">Ingen binding. Opsig når som helst. Betaling via Stripe.</p>
+    <div class="faq-section">
+      <h3>Oftest stillede spørgsmål</h3>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Hvornår trækkes betalingen?</button>
+        <div class="faq-a">Først efter din 14-dages gratis prøveperiode.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Kan jeg opsige?</button>
+        <div class="faq-a">Ja, til enhver tid. Ingen binding, ingen gebyrer.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Hvad sker der med mine data?</button>
+        <div class="faq-a">Dine data gemmes sikkert og deles aldrig med tredjepart.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Virker det uden integration til mit mæglersystem?</button>
+        <div class="faq-a">Ja. Fremvis fungerer helt standalone — ingen IT-opsætning.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Hvad koster det for et helt kontor?</button>
+        <div class="faq-a">Kontakt os på hej@fremvis.dk for kæde- og kontor-priser.</div>
+      </div>
+    </div>
   </div>
 </section>
 <footer>
   <div class="footer-inner">
-    <div class="footer-logo">Fremvis</div>
-    <div class="footer-links"><a href="#">Privatlivspolitik</a><a href="#">Vilkår</a><a href="#">Kontakt</a></div>
-    <div>© 2025 Fremvis. Alle rettigheder forbeholdes.</div>
+    <div class="footer-logo">Fremvis.</div>
+    <div class="footer-links">
+      <a href="#" onclick="openPrivacy(event)">Privatlivspolitik</a>
+      <a href="#" onclick="openTerms(event)">Vilkår</a>
+      <a href="#" onclick="openCookieSettings(event)">Cookies</a>
+      <a href="mailto:hej@fremvis.dk">Kontakt</a>
+    </div>
+    <div class="footer-contact">hej@fremvis.dk</div>
+    <div class="footer-copy">© 2025 Fremvis. Alle rettigheder forbeholdes.</div>
+    <div class="footer-cvr">CVR: [Indsættes ved registrering]</div>
   </div>
 </footer>
 <div class="modal-overlay" id="modal">
@@ -474,6 +659,69 @@
     <div class="modal-note">Vi kontakter dig inden for 24 timer</div>
   </div>
 </div>
+
+<!-- Login Modal -->
+<div class="login-modal-overlay" id="loginModal">
+  <div class="login-modal">
+    <button class="modal-close-btn" onclick="closeLoginModal()">×</button>
+    <h3>Log ind på Fremvis</h3>
+    <p class="modal-sub">Fremvis er i beta. Skriv dig op nedenfor.</p>
+    <div class="login-field">
+      <label>Email</label>
+      <input type="email" placeholder="din@email.dk" id="loginEmail">
+    </div>
+    <div class="login-field">
+      <label>Adgangskode</label>
+      <input type="password" placeholder="••••••••" id="loginPassword">
+    </div>
+    <button class="login-btn-primary" onclick="showBetaToast()">Log ind</button>
+    <a class="forgot-link" onclick="showBetaToast()">Glemt adgangskode?</a>
+    <div class="login-sep">Har du ikke en konto?</div>
+    <button class="login-signup" onclick="showBetaToast()">Opret konto</button>
+  </div>
+</div>
+
+<!-- Cookie Banner -->
+<div class="cookie-banner" id="cookieBanner">
+  <p>Vi bruger cookies til at forbedre din oplevelse.</p>
+  <div class="cookie-banner-btns">
+    <button class="cookie-btn-accept" onclick="acceptCookies()">Acceptér</button>
+    <button class="cookie-btn-minimal" onclick="acceptCookies()">Kun nødvendige</button>
+  </div>
+</div>
+
+<!-- Privacy Modal -->
+<div class="legal-overlay" id="privacyModal">
+  <div class="legal-modal">
+    <button class="modal-close-btn" onclick="closePrivacy()">×</button>
+    <h3>Privatlivspolitik</h3>
+    <p><strong>Vi indsamler:</strong> Navn og email ved tilmelding.</p>
+    <p><strong>Vi bruger det til:</strong> At kontakte dig om Fremvis og sende produktopdateringer.</p>
+    <p><strong>Deling:</strong> Vi deler ikke dine data med tredjepart.</p>
+    <p><strong>Sletning:</strong> Du kan til enhver tid bede om sletning: <a href="mailto:hej@fremvis.dk">hej@fremvis.dk</a></p>
+    <p class="legal-updated">Sidst opdateret: Juni 2025</p>
+  </div>
+</div>
+
+<!-- Terms Modal -->
+<div class="legal-overlay" id="termsModal">
+  <div class="legal-modal">
+    <button class="modal-close-btn" onclick="closeTerms()">×</button>
+    <h3>Vilkår for brug</h3>
+    <ul>
+      <li>Fremvis er et SaaS-produkt til ejendomsmæglere.</li>
+      <li>Abonnement løber månedligt og kan opsiges til enhver tid.</li>
+      <li>Vi forbeholder os retten til at ændre priser med 30 dages varsel.</li>
+      <li>Ansvar: Fremvis er ikke ansvarlig for tab som følge af systemnedbrud.</li>
+    </ul>
+    <p>Kontakt: <a href="mailto:hej@fremvis.dk">hej@fremvis.dk</a></p>
+    <p class="legal-updated">Sidst opdateret: Juni 2025</p>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="betaToast">Fremvis er i beta — skriv dig op for at få adgang</div>
+
 <script>
   window.addEventListener('scroll', () => {
     const el = document.getElementById('scroll-progress');
