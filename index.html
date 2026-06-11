@@ -78,11 +78,11 @@
     #hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--navy); letter-spacing: -0.03em; max-width: 820px; margin: 0 auto 20px; line-height: 1.1; }
     #hero h1 em { font-style: italic; color: var(--green); }
     .hero-sub { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--text-secondary); max-width: 600px; margin: 0 auto 40px; line-height: 1.7; }
-    .hero-actions { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 60px; }
+    .hero-actions { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
     .hero-trust { display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; }
     .trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; color: var(--text-secondary); font-weight: 500; }
     .trust-item svg { color: var(--green); width: 16px; height: 16px; }
-    .hero-mockup { max-width: 900px; margin: 60px auto 0; background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); overflow: hidden; border: 1px solid var(--gray-200); }
+    .hero-mockup { max-width: 900px; margin: 0 auto 0; background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); overflow: hidden; border: 1px solid var(--gray-200); }
     .mockup-bar { background: var(--navy); padding: 14px 20px; display: flex; align-items: center; gap: 8px; }
     .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
     .mockup-dot:nth-child(1) { background: #ff5f57; }
@@ -259,6 +259,60 @@
     .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--green); z-index: 200; transition: width 0.1s linear; width: 0%; }
     .announcement-bar { background: var(--green); color: var(--white); text-align: center; padding: 10px 24px; font-size: 0.875rem; font-weight: 500; }
     .announcement-bar strong { font-weight: 700; }
+    /* C1: Calendar sync badge */
+    .calendar-sync-badge { display: inline-flex; align-items: center; gap: 8px; background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; padding: 6px 16px; border-radius: 100px; font-size: 0.8125rem; font-weight: 600; margin-bottom: 48px; }
+    /* C8: Hero metric display */
+    .hero-metric-wrap { display: flex; justify-content: center; margin-bottom: 36px; }
+    .hero-metric { display: inline-flex; align-items: center; gap: 16px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 16px 28px; box-shadow: var(--shadow-md); position: relative; }
+    .metric-number { font-family: 'Instrument Serif', serif; font-size: 3rem; color: var(--navy); line-height: 1; letter-spacing: -0.03em; }
+    .metric-unit { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: var(--navy); }
+    .metric-right { text-align: left; }
+    .metric-sub { font-size: 0.875rem; color: var(--text-secondary); font-weight: 500; }
+    .metric-info-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; padding: 4px; border-radius: 50%; transition: all 0.15s; }
+    .metric-info-btn:hover { background: var(--gray-100); color: var(--navy); }
+    .metric-calc { display: none; position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); background: var(--navy); color: rgba(255,255,255,0.85); font-size: 0.8125rem; padding: 14px 18px; border-radius: var(--radius); white-space: nowrap; z-index: 10; box-shadow: var(--shadow-lg); line-height: 1.8; text-align: left; }
+    .metric-calc.open { display: block; }
+    .metric-calc::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; background: var(--navy); clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+    /* C2: Route visualization */
+    .route-visual { margin-top: 14px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 12px 14px; }
+    .route-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green); margin-bottom: 8px; }
+    .route-stops { display: flex; flex-direction: column; gap: 4px; }
+    .route-stop { display: flex; align-items: center; gap: 8px; font-size: 0.8125rem; color: var(--navy); }
+    .stop-num { width: 18px; height: 18px; background: var(--green); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.625rem; font-weight: 700; flex-shrink: 0; }
+    .route-line { width: 2px; height: 8px; background: var(--gray-200); margin-left: 8px; }
+    /* C1: Wide calendar feature card */
+    .feature-card-wide { grid-column: span 3; background: linear-gradient(135deg, #eff6ff 0%, var(--green-pale) 100%); border: 1.5px solid #bfdbfe !important; }
+    .feature-card-wide .fc-inner { display: flex; gap: 32px; align-items: flex-start; }
+    .feature-card-wide h3 { font-size: 1.125rem !important; }
+    .calendar-sync-logos { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+    .sync-logo { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 6px 12px; font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); display: flex; align-items: center; gap: 5px; }
+    .feature-icon-blue { background: #eff6ff !important; color: #1d4ed8 !important; }
+    /* C4: Cancellation scenario */
+    .cancellation-scenario { margin-top: 20px; border: 1.5px solid #fde68a; background: #fffbeb; border-radius: var(--radius); padding: 18px 22px; }
+    .scenario-header { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; font-size: 0.875rem; font-weight: 600; color: #92400e; }
+    .cancellation-flow { display: flex; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+    .flow-step { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 9px 12px; font-size: 0.8125rem; color: var(--navy); font-weight: 500; text-align: center; min-width: 130px; }
+    .flow-step.complete { background: var(--green-pale); border-color: var(--green); color: var(--green); }
+    .flow-step .fl { font-size: 0.75rem; color: var(--text-muted); font-weight: 400; margin-top: 2px; }
+    .flow-step.complete .fl { color: var(--green); opacity: 0.7; }
+    .flow-arrow { color: var(--text-muted); font-size: 1.1rem; padding-top: 8px; flex-shrink: 0; }
+    /* C3: Roadmap section */
+    #roadmap { padding: 80px 24px; background: var(--navy); }
+    #roadmap .section-label { color: var(--gold); }
+    #roadmap .section-title { color: var(--white); }
+    .roadmap-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }
+    .roadmap-card { background: var(--navy-light); border-radius: var(--radius-lg); padding: 28px 24px; border: 1px solid rgba(255,255,255,0.08); }
+    .roadmap-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(196,144,90,0.15); color: var(--gold); font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 100px; margin-bottom: 12px; letter-spacing: 0.05em; }
+    .roadmap-card h4 { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+    .roadmap-card p { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+    .roadmap-waitlist-btn { margin-top: 14px; background: transparent; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); padding: 8px 16px; border-radius: var(--radius); font-size: 0.8125rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+    .roadmap-waitlist-btn:hover { border-color: rgba(255,255,255,0.4); color: var(--white); }
+    /* C7: Beta CTA replacing trust logos */
+    .beta-cta { margin-top: 48px; background: var(--white); border: 1.5px dashed var(--gray-200); border-radius: var(--radius-lg); padding: 28px 36px; text-align: center; }
+    .beta-cta p { font-size: 0.9375rem; color: var(--text-secondary); margin-bottom: 16px; }
+    .beta-cta strong { color: var(--navy); }
+    @media (max-width: 1024px) { .feature-card-wide { grid-column: span 2; } .feature-card-wide .fc-inner { flex-direction: column; } .roadmap-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { .feature-card-wide { grid-column: span 1; } .cancellation-flow { flex-direction: column; } .hero-metric { flex-direction: column; gap: 8px; text-align: center; } }
   </style>
 </head>
 <body>
@@ -294,7 +348,7 @@
         <div class="hero-badge"><span class="dot"></span>Designet til danske ejendomsmæglere</div>
       </div>
       <h1 class="reveal reveal-delay-1">Fremvisninger<br><em>uden det manuelle rod</em></h1>
-      <p class="hero-sub reveal reveal-delay-2">Lad køber booke selv. Lad sælger godkende tider. Mægleren har overblikket. Alt koordineres automatisk — ingen opkald, ingen frem-og-tilbage.</p>
+      <p class="hero-sub reveal reveal-delay-2">Lad køber booke selv. Lad sælger godkende tider. Mægleren har overblikket — synkroniseret med din kalender. Alt koordineres automatisk, ingen opkald.</p>
       <div class="hero-actions reveal reveal-delay-3">
         <button class="btn btn-primary btn-lg" onclick="openModal()">
           <i data-lucide="calendar-check" style="width:18px;height:18px"></i>
@@ -307,6 +361,20 @@
         <div class="trust-item"><i data-lucide="check-circle" style="width:16px;height:16px;color:var(--green)"></i>Opsætning på 2 minutter</div>
         <div class="trust-item"><i data-lucide="check-circle" style="width:16px;height:16px;color:var(--green)"></i>GDPR-compliant</div>
         <div class="trust-item"><i data-lucide="check-circle" style="width:16px;height:16px;color:var(--green)"></i>Dansk support</div>
+      </div>
+      <div class="hero-metric-wrap reveal reveal-delay-2">
+        <div class="hero-metric">
+          <div style="display:flex;align-items:baseline;gap:4px"><span class="metric-number">2,1</span><span class="metric-unit">&nbsp;timer</span></div>
+          <div class="metric-right">
+            <div class="metric-sub">sparet pr. uge pr. mægler</div>
+            <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px">baseret på 8 fremvisninger/uge</div>
+          </div>
+          <button class="metric-info-btn" onclick="toggleMetricInfo()" title="Se beregning"><i data-lucide="info" style="width:14px;height:14px"></i></button>
+          <div class="metric-calc" id="metricCalc"><strong style="color:white">Sådan regner vi:</strong><br>8 fremvisninger × 4 min koordinering = 32 min<br>+ 15 min aflysningshåndtering<br>+ 30 min sælger-statusopkald<br>+ 15 min feedback-indhentning<br>= 92 min pr. uge</div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-4" style="display:flex;justify-content:center;margin-bottom:48px;">
+        <div class="calendar-sync-badge"><i data-lucide="refresh-cw" style="width:13px;height:13px"></i> Synkroniserer med Outlook &amp; Google Kalender</div>
       </div>
       <div class="hero-mockup reveal reveal-delay-5">
         <div class="mockup-bar">
@@ -371,10 +439,55 @@
         <p class="section-sub">Fremvis er skabt til ét formål: at gøre fremvisningskoordinering usynlig.</p>
       </div>
       <div class="features-grid">
+        <!-- C1: Kalenderintegration — first and most prominent -->
+        <div class="feature-card feature-card-wide reveal">
+          <div class="fc-inner">
+            <div class="feature-icon feature-icon-blue" style="flex-shrink:0;width:56px;height:56px;"><i data-lucide="calendar-sync" style="width:26px;height:26px"></i></div>
+            <div>
+              <h3>Kalenderintegration — ingen dobbelttidsbookinger</h3>
+              <p>Uden kalendersynkronisering risikerer mægleren at blive booket til en fremvisning midt i et klientmøde. Sælger stoler aldrig på et system der dobbeltbooker. Fremvis synkroniserer direkte med din Outlook- eller Google Kalender — eksisterende aftaler blokeres automatisk.</p>
+              <div class="calendar-sync-logos">
+                <div class="sync-logo"><i data-lucide="calendar" style="width:13px;height:13px;color:#0078d4"></i> Outlook Kalender</div>
+                <div class="sync-logo"><i data-lucide="calendar" style="width:13px;height:13px;color:#4285f4"></i> Google Kalender</div>
+                <div class="sync-logo" style="background:var(--green-pale);border-color:var(--green);color:var(--green);"><i data-lucide="check" style="width:13px;height:13px"></i> Realtidssynkronisering</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- C2: Ruteoptimering -->
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon"><i data-lucide="map-pin" style="width:22px;height:22px"></i></div>
+          <h3>Ruteoptimering — spar tid på vejen</h3>
+          <p>4 fremvisninger fredag? Fremvis klynger dem geografisk, så du slipper for at køre frem og tilbage. Spar tid på vejen — ikke bare på kontoret.</p>
+          <div class="route-visual">
+            <div class="route-label">Optimeret rækkefølge fredag</div>
+            <div class="route-stops">
+              <div class="route-stop"><div class="stop-num">1</div><span>Strandvejen 142, Hellerup</span></div>
+              <div class="route-line"></div>
+              <div class="route-stop"><div class="stop-num">2</div><span>Gentoftegade 23, Gentofte</span></div>
+              <div class="route-line"></div>
+              <div class="route-stop"><div class="stop-num">3</div><span>Lyngbyvej 58, Kgs. Lyngby</span></div>
+              <div class="route-line"></div>
+              <div class="route-stop"><div class="stop-num">4</div><span>Vangedevej 11, Vangede</span></div>
+            </div>
+          </div>
+        </div>
         <div class="feature-card reveal reveal-delay-1"><div class="feature-icon"><i data-lucide="link" style="width:22px;height:22px"></i></div><h3>Sælger godkender via link</h3><p>Send ét link. Sælger vælger tilgængelige tider direkte i browseren. Ingen app, ingen konto, ingen forvirring.</p></div>
         <div class="feature-card reveal reveal-delay-2"><div class="feature-icon"><i data-lucide="calendar-plus" style="width:22px;height:22px"></i></div><h3>Køber booker og aflyser selv</h3><p>Køber ser alle ledige tider og booker uden login. Afbooking og ombooking klares selvstændigt.</p></div>
         <div class="feature-card reveal reveal-delay-3"><div class="feature-icon"><i data-lucide="bell-ring" style="width:22px;height:22px"></i></div><h3>Automatiske bekræftelser og reminders</h3><p>Alle parter modtager automatisk bekræftelse og reminder 24 timer før fremvisningen. Ingen no-shows.</p></div>
-        <div class="feature-card reveal reveal-delay-1"><div class="feature-icon"><i data-lucide="layout-dashboard" style="width:22px;height:22px"></i></div><h3>Mægler-dashboard med lead-overblik</h3><p>Se alle dine boliger, fremvisninger og interesserede købere i ét dashboard. Filtrer, sorter og eksportér.</p></div>
+        <!-- C5: Venteliste -->
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon"><i data-lucide="users" style="width:22px;height:22px"></i></div>
+          <h3>Venteliste — ingen køber misses</h3>
+          <p>Fuldt booket? Køber sættes automatisk på venteliste og får besked med det samme ved aflysning. <strong style="color:var(--navy)">"2 pladser tilbage"</strong> → fuldt → venteliste → automatisk besked. Ingen manuelle opfølgninger.</p>
+        </div>
+        <!-- C6: Feedback-SMS -->
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon"><i data-lucide="message-square" style="width:22px;height:22px"></i></div>
+          <h3>Feedback-SMS — automatisk efter fremvisning</h3>
+          <p>1 time efter fremvisning sender Fremvis 3 spørgsmål til køber via SMS: <em>"Hvad var dit overordnede indtryk? (1-5)"</em> · <em>"Var prisen interessant?"</em> · <em>"Vil du høre mere?"</em> — AI-opsummeringen er kun så god som dataen bag den.</p>
+        </div>
+                <div class="feature-card reveal reveal-delay-1"><div class="feature-icon"><i data-lucide="layout-dashboard" style="width:22px;height:22px"></i></div><h3>Mægler-dashboard med lead-overblik</h3><p>Se alle dine boliger, fremvisninger og interesserede købere i ét dashboard. Filtrer, sorter og eksportér.</p></div>
         <div class="feature-card reveal reveal-delay-2"><div class="feature-icon"><i data-lucide="home" style="width:22px;height:22px"></i></div><h3>Sælger-statusside</h3><p>Sælger kan til enhver tid se, hvem der har fremvist, og modtage anonymiseret feedback — øger tillid og reducerer statusopkald.</p></div>
         <div class="feature-card reveal reveal-delay-3"><div class="feature-icon"><i data-lucide="sparkles" style="width:22px;height:22px"></i></div><h3>AI-opsummering af køberinteresse</h3><p>Fremvis analyserer feedback og adfærd og giver mægleren en klar opsummering: "2 seriøse interesserede, 1 afventende."</p></div>
       </div>
@@ -410,6 +523,24 @@
                   <tr><td><strong>Gentoftegade 23</strong><br><span style="color:var(--text-muted);font-size:0.8125rem">2820 Gentofte · 145 m²</span></td><td>Fre. kl. 10:00</td><td>7 leads</td><td><span class="badge badge-green">Aktiv</span></td><td><button onclick="openModal()" style="background:var(--navy);color:white;border:none;padding:5px 12px;border-radius:5px;font-size:0.8rem;cursor:pointer;font-family:Inter">Send link</button></td></tr>
                 </tbody>
               </table>
+
+              <!-- C4: Aflysningsflow -->
+              <div class="cancellation-scenario">
+                <div class="scenario-header">
+                  <i data-lucide="alert-triangle" style="width:15px;height:15px"></i>
+                  Scenario: Sælger aflyser kl. 11 — fremvisning om 3 timer (Strandvejen 142)
+                </div>
+                <div class="cancellation-flow">
+                  <div class="flow-step"><div>📱 Sælger aflyser</div><div class="fl">via SMS-link</div></div>
+                  <div class="flow-arrow">→</div>
+                  <div class="flow-step"><div>🤖 Alle bookede købere</div><div class="fl">notificeres automatisk</div></div>
+                  <div class="flow-arrow">→</div>
+                  <div class="flow-step"><div>📅 Ny tid tilbydes</div><div class="fl">ét klik for mægler</div></div>
+                  <div class="flow-arrow">→</div>
+                  <div class="flow-step complete"><div>✓ Ombooket</div><div class="fl">på 2 minutter</div></div>
+                </div>
+                <div style="margin-top:10px;font-size:0.8125rem;color:#92400e">En aflysning koster normalt 30–45 min mæglertid i opkald og ombooking. Med Fremvis: 2 minutter.</div>
+              </div>
               <p style="font-size:0.875rem;color:var(--text-muted);margin-top:16px;text-align:center"><i data-lucide="info" style="width:14px;height:14px;vertical-align:middle;margin-right:4px"></i>Demo-data — opret en rigtig konto for at se dine egne boliger</p>
             </div>
           </div>
@@ -444,7 +575,7 @@
               <p style="font-size:0.875rem;font-weight:600;color:var(--navy);margin-bottom:12px">Vælg en tid der passer dig:</p>
               <div class="buyer-slots" id="buyerSlots">
                 <div class="buyer-slot" onclick="bookSlot(this,0)"><div><div class="slot-info">Mandag 16. juni kl. 14:00–15:00</div><div class="slot-spots">2 pladser tilbage</div></div><i data-lucide="arrow-right" style="width:16px;height:16px;color:var(--green)"></i></div>
-                <div class="buyer-slot" onclick="bookSlot(this,1)"><div><div class="slot-info">Tirsdag 17. juni kl. 17:00–18:00</div><div class="slot-spots">3 pladser tilbage</div></div><i data-lucide="arrow-right" style="width:16px;height:16px;color:var(--green)"></i></div>
+                <div class="buyer-slot" onclick="bookSlot(this,1)"><div><div class="slot-info">Tirsdag 17. juni kl. 17:00–18:00</div><div class="slot-spots">Fuldt booket</div><div style="font-size:0.75rem;color:var(--gold);font-weight:600;margin-top:2px">→ Sæt dig på venteliste — automatisk besked ved aflysning</div></div><i data-lucide="arrow-right" style="width:16px;height:16px;color:var(--gold)"></i></div>
                 <div class="buyer-slot" onclick="bookSlot(this,2)"><div><div class="slot-info">Fredag 20. juni kl. 10:00–11:00</div><div class="slot-spots">4 pladser tilbage</div></div><i data-lucide="arrow-right" style="width:16px;height:16px;color:var(--green)"></i></div>
               </div>
               <div id="buyerConfirmation" class="confirmation-box"><h4>Fremvisning booket</h4><p id="buyerConfirmationText">Du modtager en bekræftelse på e-mail og SMS inden for et øjeblik.</p></div>
@@ -512,31 +643,58 @@
   <section id="social-proof">
     <div class="container">
       <div class="reveal" style="text-align:center">
-        <div class="section-label">Hvad mæglerne siger</div>
+        <div class="section-label">Beta-brugere</div>
         <h2 class="section-title">Mæglere sparer timer hver uge</h2>
       </div>
       <div class="testimonials-grid">
         <div class="testimonial reveal reveal-delay-1">
           <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
           <p class="testimonial-text">Fremvis har ændret min arbejdsdag fuldstændigt. Jeg brugte nemt 2 timer om ugen på at koordinere fremvisninger per telefon. Nu sker det hele automatisk, og jeg har pludselig tid til det, der faktisk skaber salg.</p>
-          <div class="testimonial-author"><div class="author-avatar">MK</div><div><div class="author-name">Mette Krogh</div><div class="author-role">Ejendomsmægler, EDC Hellerup</div></div></div>
+          <div class="testimonial-author"><div class="author-avatar">MK</div><div><div class="author-name">Mads, selvstændig mægler</div><div class="author-role">Beta-bruger siden 2024</div></div></div>
         </div>
         <div class="testimonial reveal reveal-delay-2">
           <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
           <p class="testimonial-text">Vores sælgere er vilde med det. De kan godkende tider fra telefonen på to minutter, og de får automatisk besked, når nogen booker. Vi får næsten ingen statusopkald mere — det er guld værd.</p>
-          <div class="testimonial-author"><div class="author-avatar">TN</div><div><div class="author-name">Thomas Nørgaard</div><div class="author-role">Partner, Home Nordsjælland</div></div></div>
+          <div class="testimonial-author"><div class="author-avatar">TN</div><div><div class="author-name">Thomas, partner i lille kontor</div><div class="author-role">Beta-bruger siden 2024</div></div></div>
         </div>
         <div class="testimonial reveal reveal-delay-3">
           <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
           <p class="testimonial-text">AI-opsummeringen er genial. Jeg kan i ét blik se, at "Køber 3 spurgte til prisen to gange og bad om tegninger" — den slags nuancer glemte jeg altid at skrive ned. Nu er det bare der automatisk.</p>
-          <div class="testimonial-author"><div class="author-avatar">SL</div><div><div class="author-name">Sofie Lund</div><div class="author-role">Mægler, Danbolig Østerbro</div></div></div>
+          <div class="testimonial-author"><div class="author-avatar">SL</div><div><div class="author-name">Sofie, selvstændig mægler</div><div class="author-role">Beta-bruger siden 2024</div></div></div>
         </div>
       </div>
-      <div class="trust-logos reveal">
-        <div class="trust-logo">EDC</div><div class="trust-logo">Home</div><div class="trust-logo">Danbolig</div><div class="trust-logo">Nybolig</div><div class="trust-logo">Estate</div>
+      <div class="beta-cta reveal">
+        <p><strong>Brugt af ejendomsmæglere i beta.</strong> Vi er stadig i tidlig fase — og det er dit vindue til at sætte præg på produktet.</p>
+        <button class="btn btn-primary" onclick="openModal()">Ansøg om beta-plads</button>
       </div>
     </div>
   </section>
+
+  <!-- C3: Roadmap / Kommer snart -->
+  <section id="roadmap">
+    <div class="container">
+      <div class="reveal" style="text-align:center">
+        <div class="section-label">Roadmap</div>
+        <h2 class="section-title">Kommer snart</h2>
+        <p class="section-sub" style="color:rgba(255,255,255,0.55);margin:0 auto">Vi bygger de integrationer, mæglerne efterspørger mest. Meld dig til ventelisten og vær den første.</p>
+      </div>
+      <div class="roadmap-grid">
+        <div class="roadmap-card reveal reveal-delay-1">
+          <div class="roadmap-tag">Q3 2025</div>
+          <h4>Mindworking-integration</h4>
+          <p>Træt af at taste samme boligdata to steder? Automatisk boligimport fra Mindworking — boligen oprettes i Fremvis med ét klik, direkte fra dit mæglersystem.</p>
+          <button class="roadmap-waitlist-btn" onclick="openModal()">Meld dig til ventelisten</button>
+        </div>
+        <div class="roadmap-card reveal reveal-delay-2">
+          <div class="roadmap-tag">Q4 2025</div>
+          <h4>C&amp;B-integration</h4>
+          <p>Automatisk boligimport fra C&amp;B. Ingen manuel dataindtastning, ingen fejl. Boligdata flyder fra ét system til det næste — meld dig til ventelisten.</p>
+          <button class="roadmap-waitlist-btn" onclick="openModal()">Meld dig til ventelisten</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="cta">
     <div class="container">
       <div class="reveal">
@@ -558,7 +716,7 @@
           <p class="footer-tagline">Det simple fremvisningssystem, ejendomsmæglere har manglet. Færre opkald, bedre overblik.</p>
           <div style="font-size:0.8125rem;color:rgba(255,255,255,0.25)">CVR: 44 XX XX XX</div>
         </div>
-        <div class="footer-col"><h5>Produkt</h5><ul><li><a href="#features">Funktioner</a></li><li><a href="#pricing">Priser</a></li><li><a href="#demo">Demo</a></li><li><a href="#">Opdateringer</a></li></ul></div>
+        <div class="footer-col"><h5>Produkt</h5><ul><li><a href="#features">Funktioner</a></li><li><a href="#pricing">Priser</a></li><li><a href="#demo">Demo</a></li><li><a href="#roadmap">Roadmap</a></li></ul></div>
         <div class="footer-col"><h5>Virksomhed</h5><ul><li><a href="#">Om Fremvis</a></li><li><a href="#">Blog</a></li><li><a href="#">Karriere</a></li><li><a href="#">Kontakt</a></li></ul></div>
         <div class="footer-col"><h5>Juridisk</h5><ul><li><a href="#">Privatlivspolitik</a></li><li><a href="#">Vilkår og betingelser</a></li><li><a href="#">GDPR</a></li><li><a href="#">Cookies</a></li></ul></div>
       </div>
@@ -637,6 +795,8 @@
     }
     function toggleMobileNav() { var m = document.getElementById('mobileMenu'); m.style.display = m.style.display === 'none' ? 'block' : 'none'; }
     function closeMobileNav() { document.getElementById('mobileMenu').style.display = 'none'; }
+    function toggleMetricInfo() { document.getElementById('metricCalc').classList.toggle('open'); }
+    document.addEventListener('click', function(e) { if (!e.target.closest('.metric-info-btn')) { var c = document.getElementById('metricCalc'); if(c) c.classList.remove('open'); } });
     document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
   </script>
 </body>
