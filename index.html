@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fremvis — Fremvisningssystemet for ejendomsmæglere</title>
+  <meta name="description" content="Det simple fremvisningssystem, ejendomsmæglere har manglet. Færre opkald, mindre koordinering og bedre overblik." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <style>
+    :root {
+      --navy: #1a2e4a;
+      --navy-light: #243d62;
+      --navy-dark: #0f1e30;
+      --green: #2d7a4f;
+      --green-light: #3a9b63;
+      --green-pale: #e8f4ed;
+      --gold: #c4905a;
+      --gold-light: #d4a574;
+      --off-white: #f8f7f4;
+      --white: #ffffff;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-400: #9ca3af;
+      --gray-600: #4b5563;
+      --gray-800: #1f2937;
+      --text-primary: #1a2e4a;
+      --text-secondary: #4b5563;
+      --text-muted: #9ca3af;
+      --radius: 8px;
+      --radius-lg: 16px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'Inter', sans-serif; color: var(--text-primary); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: 'Instrument Serif', serif; line-height: 1.2; font-weight: 400; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-200); padding: 0 24px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: var(--navy); text-decoration: none; letter-spacing: -0.02em; }
+    .nav-logo span { color: var(--green); }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-cta { background: var(--navy); color: var(--white) !important; padding: 8px 20px; border-radius: var(--radius); transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--navy-light) !important; }
+    .nav-mobile-toggle { display: none; background: none; border: none; cursor: pointer; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 0.9375rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; transition: all 0.2s; letter-spacing: -0.01em; }
+    .btn-primary { background: var(--green); color: var(--white); box-shadow: 0 2px 8px rgba(45,122,79,0.25); }
+    .btn-primary:hover { background: var(--green-light); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(45,122,79,0.35); }
+    .btn-secondary { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+    .btn-secondary:hover { background: var(--navy); color: var(--white); }
+    .btn-ghost { background: transparent; color: var(--green); padding: 8px 0; font-weight: 500; }
+    .btn-ghost:hover { color: var(--green-light); }
+    .btn-lg { padding: 16px 36px; font-size: 1rem; }
+    section { width: 100%; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section-label { font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 12px; }
+    .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--navy); margin-bottom: 16px; letter-spacing: -0.02em; }
+    .section-sub { font-size: 1.125rem; color: var(--text-secondary); max-width: 560px; line-height: 1.7; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+    #hero { padding: 160px 24px 120px; background: linear-gradient(160deg, var(--off-white) 0%, #eef2f7 100%); text-align: center; position: relative; overflow: hidden; }
+    #hero::before { content: ''; position: absolute; top: -120px; right: -120px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(45,122,79,0.06) 0%, transparent 70%); pointer-events: none; }
+    #hero::after { content: ''; position: absolute; bottom: -80px; left: -80px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(26,46,74,0.05) 0%, transparent 70%); pointer-events: none; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--green-pale); color: var(--green); padding: 6px 14px; border-radius: 100px; font-size: 0.8125rem; font-weight: 600; margin-bottom: 28px; letter-spacing: 0.01em; }
+    .hero-badge .dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
+    #hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--navy); letter-spacing: -0.03em; max-width: 820px; margin: 0 auto 20px; line-height: 1.1; }
+    #hero h1 em { font-style: italic; color: var(--green); }
+    .hero-sub { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--text-secondary); max-width: 600px; margin: 0 auto 40px; line-height: 1.7; }
+    .hero-actions { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 60px; }
+    .hero-trust { display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; color: var(--text-secondary); font-weight: 500; }
+    .trust-item svg { color: var(--green); width: 16px; height: 16px; }
+    .hero-mockup { max-width: 900px; margin: 60px auto 0; background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); overflow: hidden; border: 1px solid var(--gray-200); }
+    .mockup-bar { background: var(--navy); padding: 14px 20px; display: flex; align-items: center; gap: 8px; }
+    .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .mockup-dot:nth-child(1) { background: #ff5f57; }
+    .mockup-dot:nth-child(2) { background: #febc2e; }
+    .mockup-dot:nth-child(3) { background: #28c840; }
+    .mockup-url { flex: 1; background: rgba(255,255,255,0.08); border-radius: 4px; padding: 4px 12px; font-size: 0.8125rem; color: rgba(255,255,255,0.5); margin-left: 12px; font-family: 'Inter', monospace; }
+    .mockup-content { padding: 28px; background: var(--gray-50); }
+    .mockup-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .mockup-title { font-family: 'Instrument Serif', serif; font-size: 1.25rem; color: var(--navy); }
+    .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+    .stat-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 16px; text-align: center; }
+    .stat-card .num { font-family: 'Instrument Serif', serif; font-size: 1.75rem; color: var(--navy); line-height: 1; margin-bottom: 4px; }
+    .stat-card .lbl { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
+    .listing-rows { display: flex; flex-direction: column; gap: 8px; }
+    .listing-row { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 12px 16px; display: flex; align-items: center; gap: 12px; }
+    .listing-color { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .listing-addr { font-size: 0.875rem; font-weight: 500; color: var(--navy); flex: 1; }
+    .listing-meta { font-size: 0.75rem; color: var(--text-muted); }
+    .badge { font-size: 0.6875rem; font-weight: 600; padding: 3px 8px; border-radius: 100px; }
+    .badge-green { background: var(--green-pale); color: var(--green); }
+    .badge-gold { background: #fdf2e6; color: var(--gold); }
+    .badge-navy { background: #e8edf4; color: var(--navy); }
+    #problem { padding: 100px 24px; background: var(--navy); }
+    .problem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 48px; border-radius: var(--radius-lg); overflow: hidden; }
+    .pain-card { background: var(--navy-light); padding: 36px 32px; transition: background 0.2s; }
+    .pain-card:hover { background: #2c4a6e; }
+    .pain-icon { width: 44px; height: 44px; background: rgba(196,144,90,0.15); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; color: var(--gold); }
+    .pain-title { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+    .pain-text { font-size: 0.9375rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+    #problem .section-title { color: var(--white); }
+    #problem .section-sub { color: rgba(255,255,255,0.55); }
+    #problem .section-label { color: var(--gold); }
+    #workflow { padding: 100px 24px; background: var(--off-white); }
+    .workflow-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 56px; position: relative; }
+    .workflow-steps::before { content: ''; position: absolute; top: 32px; left: calc(12.5% + 16px); right: calc(12.5% + 16px); height: 2px; background: linear-gradient(90deg, var(--green) 0%, var(--navy) 100%); z-index: 0; }
+    .workflow-step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 16px; position: relative; z-index: 1; }
+    .step-circle { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-family: 'Instrument Serif', serif; font-size: 1.25rem; position: relative; }
+    .step-circle.active { background: var(--green); color: var(--white); box-shadow: 0 4px 16px rgba(45,122,79,0.35); }
+    .step-circle.navy { background: var(--navy); color: var(--white); }
+    .step-circle.gold { background: var(--gold); color: var(--white); }
+    .step-circle.outline { background: var(--white); color: var(--navy); border: 2px solid var(--navy); }
+    .step-actor { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 6px; }
+    .step-title { font-family: 'Inter', sans-serif; font-size: 0.9375rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+    .step-desc { font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.5; }
+    #features { padding: 100px 24px; background: var(--white); }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+    .feature-card { background: var(--off-white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 32px 28px; transition: all 0.25s; position: relative; overflow: hidden; }
+    .feature-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green), var(--navy)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+    .feature-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .feature-card:hover::before { transform: scaleX(1); }
+    .feature-icon { width: 48px; height: 48px; background: var(--green-pale); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; color: var(--green); }
+    .feature-card h3 { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .feature-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.65; }
+    #demo { padding: 100px 24px; background: var(--off-white); }
+    .demo-tabs { display: flex; gap: 4px; background: var(--gray-100); border-radius: 10px; padding: 4px; width: fit-content; margin: 40px auto 0; }
+    .demo-tab { padding: 10px 24px; border-radius: 7px; font-size: 0.9rem; font-weight: 600; cursor: pointer; border: none; background: transparent; color: var(--text-secondary); transition: all 0.2s; font-family: 'Inter', sans-serif; }
+    .demo-tab.active { background: var(--white); color: var(--navy); box-shadow: var(--shadow); }
+    .demo-tab:hover:not(.active) { color: var(--navy); }
+    .demo-panels { margin-top: 32px; }
+    .demo-panel { display: none; }
+    .demo-panel.active { display: block; }
+    .demo-interface { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); }
+    .demo-interface-header { background: var(--navy); padding: 16px 24px; display: flex; align-items: center; gap: 12px; color: var(--white); }
+    .demo-interface-header h4 { font-family: 'Inter', sans-serif; font-size: 0.9375rem; font-weight: 600; color: var(--white); }
+    .demo-interface-body { padding: 28px; }
+    .dash-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
+    .dash-stat { background: var(--off-white); border-radius: var(--radius); padding: 20px; border: 1px solid var(--gray-200); }
+    .dash-stat .number { font-family: 'Instrument Serif', serif; font-size: 2rem; color: var(--navy); line-height: 1; margin-bottom: 4px; }
+    .dash-stat .label { font-size: 0.8125rem; color: var(--text-muted); }
+    .dash-table { width: 100%; border-collapse: collapse; }
+    .dash-table th { text-align: left; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); padding: 0 12px 10px; border-bottom: 1px solid var(--gray-200); }
+    .dash-table td { padding: 12px; font-size: 0.875rem; color: var(--navy); border-bottom: 1px solid var(--gray-100); }
+    .seller-intro { background: var(--green-pale); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 24px; border-left: 4px solid var(--green); }
+    .seller-intro p { font-size: 0.9rem; color: var(--green); font-weight: 500; }
+    .time-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 24px; }
+    .time-slot { border: 1.5px solid var(--gray-200); border-radius: var(--radius); padding: 12px; text-align: center; cursor: pointer; transition: all 0.15s; background: var(--white); }
+    .time-slot:hover { border-color: var(--green); background: var(--green-pale); }
+    .time-slot.selected { border-color: var(--green); background: var(--green); color: var(--white); }
+    .time-slot .day { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.7; margin-bottom: 4px; }
+    .time-slot .time { font-size: 0.9375rem; font-weight: 600; }
+    .buyer-property { display: flex; align-items: center; gap: 16px; background: var(--off-white); border-radius: var(--radius); padding: 16px; margin-bottom: 24px; border: 1px solid var(--gray-200); }
+    .property-thumb { width: 60px; height: 60px; background: linear-gradient(135deg, var(--navy), var(--navy-light)); border-radius: var(--radius); flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); }
+    .buyer-slots { display: flex; flex-direction: column; gap: 8px; }
+    .buyer-slot { display: flex; align-items: center; justify-content: space-between; background: var(--off-white); border: 1.5px solid var(--gray-200); border-radius: var(--radius); padding: 14px 18px; cursor: pointer; transition: all 0.15s; }
+    .buyer-slot:hover { border-color: var(--green); background: var(--green-pale); }
+    .buyer-slot.booked { border-color: var(--green); background: var(--green); color: var(--white); }
+    .buyer-slot .slot-info { font-size: 0.9375rem; font-weight: 500; }
+    .buyer-slot .slot-spots { font-size: 0.8125rem; opacity: 0.65; }
+    .confirmation-box { display: none; background: var(--green-pale); border: 1px solid var(--green); border-radius: var(--radius); padding: 20px; margin-top: 16px; text-align: center; }
+    .confirmation-box.show { display: block; }
+    .confirmation-box h4 { font-family: 'Inter', sans-serif; font-weight: 600; color: var(--green); margin-bottom: 6px; }
+    .confirmation-box p { font-size: 0.875rem; color: var(--green); opacity: 0.8; }
+    #pricing { padding: 100px 24px; background: var(--white); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+    .pricing-card { border: 1.5px solid var(--gray-200); border-radius: var(--radius-lg); padding: 36px 32px; position: relative; transition: all 0.25s; }
+    .pricing-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .pricing-card.featured { border-color: var(--navy); background: var(--navy); color: var(--white); }
+    .pricing-tag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--green); color: var(--white); font-size: 0.75rem; font-weight: 700; padding: 4px 14px; border-radius: 100px; white-space: nowrap; letter-spacing: 0.03em; }
+    .plan-name { font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 12px; }
+    .pricing-card.featured .plan-name { color: rgba(255,255,255,0.5); }
+    .plan-price { font-family: 'Instrument Serif', serif; font-size: 3rem; color: var(--navy); line-height: 1; margin-bottom: 4px; letter-spacing: -0.02em; }
+    .pricing-card.featured .plan-price { color: var(--white); }
+    .plan-price span { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 400; color: var(--text-muted); }
+    .pricing-card.featured .plan-price span { color: rgba(255,255,255,0.5); }
+    .plan-desc { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--gray-200); }
+    .pricing-card.featured .plan-desc { color: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.1); }
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .plan-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; color: var(--text-secondary); }
+    .pricing-card.featured .plan-features li { color: rgba(255,255,255,0.75); }
+    .plan-features li .check { color: var(--green); flex-shrink: 0; margin-top: 1px; }
+    .pricing-card.featured .plan-features li .check { color: #6ee7a0; }
+    .btn-pricing-primary { width: 100%; background: var(--green); color: var(--white); padding: 14px; border-radius: var(--radius); font-weight: 600; font-family: 'Inter', sans-serif; font-size: 0.9375rem; cursor: pointer; border: none; text-align: center; display: block; transition: all 0.2s; }
+    .btn-pricing-primary:hover { background: var(--green-light); }
+    .btn-pricing-outline { width: 100%; background: transparent; color: var(--white); padding: 14px; border-radius: var(--radius); font-weight: 600; font-family: 'Inter', sans-serif; font-size: 0.9375rem; cursor: pointer; border: 1.5px solid rgba(255,255,255,0.25); text-align: center; display: block; transition: all 0.2s; }
+    .btn-pricing-outline:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.07); }
+    .btn-pricing-ghost { width: 100%; background: transparent; color: var(--navy); padding: 14px; border-radius: var(--radius); font-weight: 600; font-family: 'Inter', sans-serif; font-size: 0.9375rem; cursor: pointer; border: 1.5px solid var(--gray-200); text-align: center; display: block; transition: all 0.2s; }
+    .btn-pricing-ghost:hover { border-color: var(--navy); }
+    .pricing-note { text-align: center; font-size: 0.875rem; color: var(--text-muted); margin-top: 20px; }
+    #social-proof { padding: 100px 24px; background: var(--off-white); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .testimonial { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 32px 28px; position: relative; }
+    .testimonial::before { content: '\201C'; font-family: 'Instrument Serif', serif; font-size: 5rem; color: var(--green-pale); position: absolute; top: 12px; left: 24px; line-height: 1; }
+    .testimonial-text { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px; position: relative; z-index: 1; padding-top: 28px; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .author-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: var(--white); display: flex; align-items: center; justify-content: center; font-family: 'Instrument Serif', serif; font-size: 1rem; flex-shrink: 0; }
+    .author-name { font-weight: 600; font-size: 0.9rem; color: var(--navy); }
+    .author-role { font-size: 0.8125rem; color: var(--text-muted); }
+    .stars { display: flex; gap: 2px; margin-bottom: 12px; }
+    .star { color: var(--gold); font-size: 0.875rem; }
+    .trust-logos { margin-top: 56px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .trust-logo { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 12px 24px; font-size: 0.8125rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.05em; }
+    #cta { padding: 100px 24px; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); text-align: center; position: relative; overflow: hidden; }
+    #cta::before { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(45,122,79,0.15) 0%, transparent 70%); }
+    #cta h2 { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--white); max-width: 700px; margin: 0 auto 20px; letter-spacing: -0.02em; }
+    #cta p { font-size: 1.125rem; color: rgba(255,255,255,0.6); max-width: 480px; margin: 0 auto 40px; }
+    .cta-actions { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+    .btn-white { background: var(--white); color: var(--navy); padding: 16px 36px; border-radius: var(--radius); font-weight: 700; font-size: 1rem; font-family: 'Inter', sans-serif; cursor: pointer; border: none; transition: all 0.2s; }
+    .btn-white:hover { background: var(--off-white); transform: translateY(-1px); }
+    .btn-outline-white { background: transparent; color: var(--white); padding: 16px 36px; border-radius: var(--radius); font-weight: 600; font-size: 1rem; font-family: 'Inter', sans-serif; cursor: pointer; border: 1.5px solid rgba(255,255,255,0.3); transition: all 0.2s; }
+    .btn-outline-white:hover { border-color: rgba(255,255,255,0.6); }
+    .cta-note { font-size: 0.875rem; color: rgba(255,255,255,0.4); }
+    footer { background: var(--navy-dark); padding: 48px 24px 32px; color: rgba(255,255,255,0.5); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+    .footer-logo { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: var(--white); margin-bottom: 12px; }
+    .footer-logo span { color: var(--green); }
+    .footer-tagline { font-size: 0.875rem; color: rgba(255,255,255,0.4); line-height: 1.6; margin-bottom: 20px; }
+    .footer-col h5 { font-family: 'Inter', sans-serif; font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 0.8125rem; }
+    .footer-bottom a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    .footer-bottom a:hover { color: rgba(255,255,255,0.6); }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(4px); padding: 24px; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: var(--white); border-radius: var(--radius-lg); padding: 36px; max-width: 560px; width: 100%; position: relative; box-shadow: var(--shadow-lg); animation: slideUp 0.3s ease; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .modal-close { position: absolute; top: 16px; right: 16px; background: var(--gray-100); border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: background 0.2s; }
+    .modal-close:hover { background: var(--gray-200); }
+    .modal h3 { font-size: 1.5rem; color: var(--navy); margin-bottom: 8px; }
+    .modal p { font-size: 0.9375rem; color: var(--text-secondary); margin-bottom: 20px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.875rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+    .form-group input, .form-group select { width: 100%; padding: 11px 14px; border: 1.5px solid var(--gray-200); border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: var(--navy); background: var(--white); transition: border-color 0.2s; outline: none; }
+    .form-group input:focus, .form-group select:focus { border-color: var(--green); }
+    .modal-btn { width: 100%; background: var(--green); color: var(--white); padding: 14px; border-radius: var(--radius); font-weight: 700; font-family: 'Inter', sans-serif; font-size: 1rem; cursor: pointer; border: none; margin-top: 8px; transition: all 0.2s; }
+    .modal-btn:hover { background: var(--green-light); }
+    @media (max-width: 1024px) { .problem-grid { grid-template-columns: 1fr; } .features-grid { grid-template-columns: repeat(2, 1fr); } .testimonials-grid { grid-template-columns: repeat(2, 1fr); } .footer-top { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 768px) { .nav-links { display: none; } .nav-mobile-toggle { display: block; } #hero { padding: 120px 20px 80px; } #hero h1 { font-size: 2.5rem; } .problem-grid { grid-template-columns: 1fr; gap: 2px; } .workflow-steps { grid-template-columns: 1fr 1fr; gap: 32px; } .workflow-steps::before { display: none; } .features-grid { grid-template-columns: 1fr; } .pricing-grid { grid-template-columns: 1fr; } .testimonials-grid { grid-template-columns: 1fr; } .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; } .stat-row { grid-template-columns: repeat(2, 1fr); } .dash-stats { grid-template-columns: 1fr 1fr; } .demo-tabs { flex-direction: column; width: 100%; } .demo-tab { text-align: center; } .time-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .hero-actions { flex-direction: column; align-items: stretch; } .hero-actions .btn { text-align: center; justify-content: center; } .footer-top { grid-template-columns: 1fr; } .stat-row { grid-template-columns: 1fr 1fr; } .pricing-card.featured { order: -1; } }
+    .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--green); z-index: 200; transition: width 0.1s linear; width: 0%; }
+    .announcement-bar { background: var(--green); color: var(--white); text-align: center; padding: 10px 24px; font-size: 0.875rem; font-weight: 500; }
+    .announcement-bar strong { font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="announcement-bar">
+    <strong>Ny:</strong> AI-opsummering af køberinteresse er nu tilgængelig — <a href="#" onclick="openModal()" style="color:white;text-decoration:underline">prøv gratis</a>
+  </div>
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Fremvis<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#problem">Problemet</a></li>
+        <li><a href="#features">Funktioner</a></li>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#pricing">Priser</a></li>
+        <li><a href="#" class="nav-cta" onclick="openModal(); return false;">Prøv gratis</a></li>
+      </ul>
+      <button class="nav-mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu">
+        <i data-lucide="menu" style="width:20px;height:20px;color:var(--navy)"></i>
+      </button>
+    </div>
+    <div id="mobileMenu" style="display:none;padding:16px 24px 20px;border-top:1px solid var(--gray-200)">
+      <a href="#problem" onclick="closeMobileNav()" style="display:block;padding:10px 0;font-size:0.9375rem;color:var(--navy);text-decoration:none;font-weight:500">Problemet</a>
+      <a href="#features" onclick="closeMobileNav()" style="display:block;padding:10px 0;font-size:0.9375rem;color:var(--navy);text-decoration:none;font-weight:500">Funktioner</a>
+      <a href="#demo" onclick="closeMobileNav()" style="display:block;padding:10px 0;font-size:0.9375rem;color:var(--navy);text-decoration:none;font-weight:500">Demo</a>
+      <a href="#pricing" onclick="closeMobileNav()" style="display:block;padding:10px 0;font-size:0.9375rem;color:var(--navy);text-decoration:none;font-weight:500">Priser</a>
+      <button class="modal-btn" onclick="openModal(); closeMobileNav();" style="margin-top:12px">Prøv gratis i 14 dage</button>
+    </div>
+  </nav>
+  <section id="hero">
+    <div class="container">
+      <div class="reveal">
+        <div class="hero-badge"><span class="dot"></span>Designet til danske ejendomsmæglere</div>
+      </div>
+      <h1 class="reveal reveal-delay-1">Fremvisninger<br><em>uden det manuelle rod</em></h1>
+      <p class="hero-sub reveal reveal-delay-2">Lad køber booke selv. Lad sælger godkende tider. Mægleren har overblikket. Alt koordineres automatisk — ingen opkald, ingen frem-og-tilbage.</p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <button class="btn btn-primary btn-lg" onclick="openModal()">
+          <i data-lucide="calendar-check" style="width:18px;height:18px"></i>
+          Prøv gratis i 14 dage
+        </button>
+        <a href="#demo" class="btn btn-secondary btn-lg">Se demo <i data-lucide="arrow-right" style="width:16px;height:16px"></i></a>
+      </div>
+      <div class="hero-trust reveal reveal-delay-4">
+        <div class="trust-item"><i data-lucide="check-circle" style="width:16px;height:16px;color:var(--green)"></i>Ingen binding</div>
+        <div class="trust-item"><i data-lucide="check-circle" style="width:16px;height:16px;color:var(--green)"></i>Opsætning på 2 minutter</div>
+        <div class="trust-item"><i data-lucide="check-circle" style="width:16px;height:16px;color:var(--green)"></i>GDPR-compliant</div>
+        <div class="trust-item"><i data-lucide="check-circle" style="width:16px;height:16px;color:var(--green)"></i>Dansk support</div>
+      </div>
+      <div class="hero-mockup reveal reveal-delay-5">
+        <div class="mockup-bar">
+          <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
+          <div class="mockup-url">fremvis.dk/dashboard</div>
+        </div>
+        <div class="mockup-content">
+          <div class="mockup-header">
+            <div class="mockup-title">Mit overblik</div>
+            <span class="badge badge-green">3 fremvisninger i dag</span>
+          </div>
+          <div class="stat-row">
+            <div class="stat-card"><div class="num">12</div><div class="lbl">Aktive boliger</div></div>
+            <div class="stat-card"><div class="num">47</div><div class="lbl">Fremvisninger i år</div></div>
+            <div class="stat-card"><div class="num">94%</div><div class="lbl">Bekræftelsesrate</div></div>
+            <div class="stat-card"><div class="num">2,1t</div><div class="lbl">Sparet pr. uge</div></div>
+          </div>
+          <div class="listing-rows">
+            <div class="listing-row"><div class="listing-color" style="background:var(--green)"></div><span class="listing-addr">Strandvejen 142, 2900 Hellerup</span><span class="listing-meta">3 fremvisninger booket</span><span class="badge badge-green">Aktiv</span></div>
+            <div class="listing-row"><div class="listing-color" style="background:var(--gold)"></div><span class="listing-addr">Østerbrogade 89, 2100 København Ø</span><span class="listing-meta">Afventer sælger</span><span class="badge badge-gold">Afventer</span></div>
+            <div class="listing-row"><div class="listing-color" style="background:var(--navy)"></div><span class="listing-addr">Gentoftegade 23, 2820 Gentofte</span><span class="listing-meta">1 fremvisning i dag kl. 14:00</span><span class="badge badge-navy">I dag</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="problem">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Problemet</div>
+        <h2 class="section-title">Sådan ser din dag ud i dag</h2>
+        <p class="section-sub">Koordinering af fremvisninger er en af de mest tidskrævende og frustrerende dele af mæglerhverdagen. Det behøver det ikke være.</p>
+      </div>
+      <div class="problem-grid">
+        <div class="pain-card reveal reveal-delay-1"><div class="pain-icon"><i data-lucide="phone-call" style="width:22px;height:22px"></i></div><div class="pain-title">Telefonrunden starter tidligt</div><p class="pain-text">Ring til sælger for at finde ledige tider. Ring til køber for at booke. Ring igen fordi tidspunktet ikke passer. Gentag for alle boliger.</p></div>
+        <div class="pain-card reveal reveal-delay-2"><div class="pain-icon"><i data-lucide="mail-x" style="width:22px;height:22px"></i></div><div class="pain-title">Mailen overvælder</div><p class="pain-text">"Kan vi rykke til 13:30?" "Hvornår er den næste fremvisning?" E-mail-tråde der aldrig slutter og aflyste tider ingen husker.</p></div>
+        <div class="pain-card reveal reveal-delay-3"><div class="pain-icon"><i data-lucide="calendar-x" style="width:22px;height:22px"></i></div><div class="pain-title">Konflikter og no-shows</div><p class="pain-text">Dobbelttidsbookinger sker fordi en Excel-kolonne ikke er opdateret. Sælger er ikke hjemme. Køber møder ikke op. Ingen vidste det.</p></div>
+        <div class="pain-card reveal reveal-delay-4"><div class="pain-icon"><i data-lucide="eye-off" style="width:22px;height:22px"></i></div><div class="pain-title">Ingen overblik over leads</div><p class="pain-text">Hvem fremviste hvornår? Hvad sagde de bagefter? Hvem virker seriøs? Denne information sidder i din hoved, ikke et system.</p></div>
+      </div>
+    </div>
+  </section>
+  <section id="workflow">
+    <div class="container">
+      <div class="reveal" style="text-align:center">
+        <div class="section-label">Sådan virker det</div>
+        <h2 class="section-title">Fire trin — og systemet gør resten</h2>
+        <p class="section-sub" style="margin:0 auto">Fra oprettelse til bekræftede fremvisninger, helt automatisk.</p>
+      </div>
+      <div class="workflow-steps">
+        <div class="workflow-step reveal reveal-delay-1"><div class="step-circle active">1</div><div class="step-actor">Mægler</div><div class="step-title">Opretter boligen</div><p class="step-desc">Tilføj adresse, billeder og ønskede fremvisningstider. Tager under 2 minutter.</p></div>
+        <div class="workflow-step reveal reveal-delay-2"><div class="step-circle gold">2</div><div class="step-actor">Sælger</div><div class="step-title">Godkender tider</div><p class="step-desc">Modtager link og vælger de tider der passer. Ingen konto kræves.</p></div>
+        <div class="workflow-step reveal reveal-delay-3"><div class="step-circle navy">3</div><div class="step-actor">Køber</div><div class="step-title">Booker selv</div><p class="step-desc">Ser de godkendte tider og reserverer sin fremvisning i ét klik.</p></div>
+        <div class="workflow-step reveal reveal-delay-4"><div class="step-circle outline">4</div><div class="step-actor">Alle parter</div><div class="step-title">Bekræftes automatisk</div><p class="step-desc">SMS og e-mail bekræftelser + reminders sendes til alle automatisk.</p></div>
+      </div>
+    </div>
+  </section>
+  <section id="features">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Funktioner</div>
+        <h2 class="section-title">Alt det vigtige. Ingenting overflødigt.</h2>
+        <p class="section-sub">Fremvis er skabt til ét formål: at gøre fremvisningskoordinering usynlig.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal reveal-delay-1"><div class="feature-icon"><i data-lucide="link" style="width:22px;height:22px"></i></div><h3>Sælger godkender via link</h3><p>Send ét link. Sælger vælger tilgængelige tider direkte i browseren. Ingen app, ingen konto, ingen forvirring.</p></div>
+        <div class="feature-card reveal reveal-delay-2"><div class="feature-icon"><i data-lucide="calendar-plus" style="width:22px;height:22px"></i></div><h3>Køber booker og aflyser selv</h3><p>Køber ser alle ledige tider og booker uden login. Afbooking og ombooking klares selvstændigt.</p></div>
+        <div class="feature-card reveal reveal-delay-3"><div class="feature-icon"><i data-lucide="bell-ring" style="width:22px;height:22px"></i></div><h3>Automatiske bekræftelser og reminders</h3><p>Alle parter modtager automatisk bekræftelse og reminder 24 timer før fremvisningen. Ingen no-shows.</p></div>
+        <div class="feature-card reveal reveal-delay-1"><div class="feature-icon"><i data-lucide="layout-dashboard" style="width:22px;height:22px"></i></div><h3>Mægler-dashboard med lead-overblik</h3><p>Se alle dine boliger, fremvisninger og interesserede købere i ét dashboard. Filtrer, sorter og eksportér.</p></div>
+        <div class="feature-card reveal reveal-delay-2"><div class="feature-icon"><i data-lucide="home" style="width:22px;height:22px"></i></div><h3>Sælger-statusside</h3><p>Sælger kan til enhver tid se, hvem der har fremvist, og modtage anonymiseret feedback — øger tillid og reducerer statusopkald.</p></div>
+        <div class="feature-card reveal reveal-delay-3"><div class="feature-icon"><i data-lucide="sparkles" style="width:22px;height:22px"></i></div><h3>AI-opsummering af køberinteresse</h3><p>Fremvis analyserer feedback og adfærd og giver mægleren en klar opsummering: "2 seriøse interesserede, 1 afventende."</p></div>
+      </div>
+    </div>
+  </section>
+  <section id="demo">
+    <div class="container">
+      <div class="reveal" style="text-align:center">
+        <div class="section-label">Interaktiv demo</div>
+        <h2 class="section-title">Se Fremvis fra alle vinkler</h2>
+        <p class="section-sub" style="margin:0 auto">Prøv de tre flows og se præcis, hvad mægler, sælger og køber oplever.</p>
+      </div>
+      <div class="demo-tabs reveal reveal-delay-1">
+        <button class="demo-tab active" onclick="switchTab('magler')">Mægler-flow</button>
+        <button class="demo-tab" onclick="switchTab('saelger')">Sælger-flow</button>
+        <button class="demo-tab" onclick="switchTab('koeber')">Køber-flow</button>
+      </div>
+      <div class="demo-panels">
+        <div class="demo-panel active" id="panel-magler">
+          <div class="demo-interface reveal reveal-delay-2">
+            <div class="demo-interface-header"><i data-lucide="layout-dashboard" style="width:18px;height:18px"></i><h4>Mægler-dashboard — Fremvis</h4><span class="badge badge-green" style="margin-left:auto">Live</span></div>
+            <div class="demo-interface-body">
+              <div class="dash-stats">
+                <div class="dash-stat"><div class="number">8</div><div class="label">Aktive boliger</div></div>
+                <div class="dash-stat"><div class="number">23</div><div class="label">Åbne fremvisninger</div></div>
+                <div class="dash-stat"><div class="number">14</div><div class="label">Leads denne uge</div></div>
+              </div>
+              <table class="dash-table">
+                <thead><tr><th>Bolig</th><th>Næste fremvisning</th><th>Interesserede</th><th>Status</th><th></th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Strandvejen 142</strong><br><span style="color:var(--text-muted);font-size:0.8125rem">2900 Hellerup · 89 m²</span></td><td>I dag kl. 14:00</td><td>5 leads</td><td><span class="badge badge-green">Aktiv</span></td><td><button onclick="openModal()" style="background:var(--navy);color:white;border:none;padding:5px 12px;border-radius:5px;font-size:0.8rem;cursor:pointer;font-family:Inter">Send link</button></td></tr>
+                  <tr><td><strong>Østerbrogade 89</strong><br><span style="color:var(--text-muted);font-size:0.8125rem">2100 KBH Ø · 112 m²</span></td><td>Tors. kl. 16:30</td><td>3 leads</td><td><span class="badge badge-gold">Afventer</span></td><td><button onclick="openModal()" style="background:var(--navy);color:white;border:none;padding:5px 12px;border-radius:5px;font-size:0.8rem;cursor:pointer;font-family:Inter">Send link</button></td></tr>
+                  <tr><td><strong>Gentoftegade 23</strong><br><span style="color:var(--text-muted);font-size:0.8125rem">2820 Gentofte · 145 m²</span></td><td>Fre. kl. 10:00</td><td>7 leads</td><td><span class="badge badge-green">Aktiv</span></td><td><button onclick="openModal()" style="background:var(--navy);color:white;border:none;padding:5px 12px;border-radius:5px;font-size:0.8rem;cursor:pointer;font-family:Inter">Send link</button></td></tr>
+                </tbody>
+              </table>
+              <p style="font-size:0.875rem;color:var(--text-muted);margin-top:16px;text-align:center"><i data-lucide="info" style="width:14px;height:14px;vertical-align:middle;margin-right:4px"></i>Demo-data — opret en rigtig konto for at se dine egne boliger</p>
+            </div>
+          </div>
+        </div>
+        <div class="demo-panel" id="panel-saelger">
+          <div class="demo-interface reveal">
+            <div class="demo-interface-header"><i data-lucide="home" style="width:18px;height:18px"></i><h4>Din bolig — Godkend fremvisningstider</h4></div>
+            <div class="demo-interface-body">
+              <div class="seller-intro"><p>Din mægler Mette Krog har oprettet fremvisningsmuligheder til Strandvejen 142. Vælg de tider, der passer dig.</p></div>
+              <p style="font-size:0.875rem;font-weight:600;color:var(--navy);margin-bottom:12px">Vælg dine foretrukne tider (klik for at vælge/fravælge):</p>
+              <div class="time-grid" id="timeGrid">
+                <div class="time-slot" onclick="toggleSlot(this)"><div class="day">Man 16. juni</div><div class="time">10:00–11:00</div></div>
+                <div class="time-slot selected" onclick="toggleSlot(this)"><div class="day">Man 16. juni</div><div class="time">14:00–15:00</div></div>
+                <div class="time-slot" onclick="toggleSlot(this)"><div class="day">Tirs 17. juni</div><div class="time">09:00–10:00</div></div>
+                <div class="time-slot selected" onclick="toggleSlot(this)"><div class="day">Tirs 17. juni</div><div class="time">17:00–18:00</div></div>
+                <div class="time-slot" onclick="toggleSlot(this)"><div class="day">Ons 18. juni</div><div class="time">13:00–14:00</div></div>
+                <div class="time-slot selected" onclick="toggleSlot(this)"><div class="day">Fre 20. juni</div><div class="time">10:00–11:00</div></div>
+              </div>
+              <button class="modal-btn" id="sellerConfirmBtn" onclick="confirmSellerTimes()">Godkend valgte tider</button>
+              <div id="sellerConfirmation" class="confirmation-box"><h4>Tider godkendt</h4><p>Dine valgte tider er sendt til din mægler. Købere kan nu booke inden for disse tider.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-panel" id="panel-koeber">
+          <div class="demo-interface reveal">
+            <div class="demo-interface-header"><i data-lucide="search" style="width:18px;height:18px"></i><h4>Book fremvisning — Strandvejen 142, 2900 Hellerup</h4></div>
+            <div class="demo-interface-body">
+              <div class="buyer-property">
+                <div class="property-thumb"><i data-lucide="home" style="width:26px;height:26px"></i></div>
+                <div><div style="font-weight:600;color:var(--navy)">Strandvejen 142, 2900 Hellerup</div><div style="font-size:0.875rem;color:var(--text-muted);margin-top:2px">Villa · 145 m² · 4 vær. · Udbudt: 7.950.000 kr.</div><div style="margin-top:6px"><span class="badge badge-green">3 ledige tider</span></div></div>
+              </div>
+              <p style="font-size:0.875rem;font-weight:600;color:var(--navy);margin-bottom:12px">Vælg en tid der passer dig:</p>
+              <div class="buyer-slots" id="buyerSlots">
+                <div class="buyer-slot" onclick="bookSlot(this,0)"><div><div class="slot-info">Mandag 16. juni kl. 14:00–15:00</div><div class="slot-spots">2 pladser tilbage</div></div><i data-lucide="arrow-right" style="width:16px;height:16px;color:var(--green)"></i></div>
+                <div class="buyer-slot" onclick="bookSlot(this,1)"><div><div class="slot-info">Tirsdag 17. juni kl. 17:00–18:00</div><div class="slot-spots">3 pladser tilbage</div></div><i data-lucide="arrow-right" style="width:16px;height:16px;color:var(--green)"></i></div>
+                <div class="buyer-slot" onclick="bookSlot(this,2)"><div><div class="slot-info">Fredag 20. juni kl. 10:00–11:00</div><div class="slot-spots">4 pladser tilbage</div></div><i data-lucide="arrow-right" style="width:16px;height:16px;color:var(--green)"></i></div>
+              </div>
+              <div id="buyerConfirmation" class="confirmation-box"><h4>Fremvisning booket</h4><p id="buyerConfirmationText">Du modtager en bekræftelse på e-mail og SMS inden for et øjeblik.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="pricing">
+    <div class="container">
+      <div class="reveal" style="text-align:center">
+        <div class="section-label">Priser</div>
+        <h2 class="section-title">Enkel og gennemsigtig prissætning</h2>
+        <p class="section-sub" style="margin:0 auto">Alle planer inkluderer ubegrænsede boliger og fremvisninger. Prøv gratis i 14 dage — ingen kreditkort kræves.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card reveal reveal-delay-1">
+          <div class="plan-name">Solo</div>
+          <div class="plan-price">299<span> kr/md</span></div>
+          <p class="plan-desc">Til den selvstændige mægler, der ønsker at fjerne koordineringsarbeidet én gang for alle.</p>
+          <ul class="plan-features">
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Ubegrænsede boliger</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Ubegrænsede fremvisninger</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>1 mægler-konto</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Automatiske bekræftelser og reminders</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Køber- og sælger-links</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Grundlæggende dashboard</li>
+          </ul>
+          <button class="btn-pricing-primary" onclick="openModal()">Start gratis prøveperiode</button>
+        </div>
+        <div class="pricing-card featured reveal reveal-delay-2">
+          <div class="pricing-tag">Mest populær</div>
+          <div class="plan-name">Team</div>
+          <div class="plan-price">799<span> kr/md</span></div>
+          <p class="plan-desc">Til kontoret der ønsker et fælles overblik og deling af leads på tværs af mæglere.</p>
+          <ul class="plan-features">
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Alt fra Solo</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Op til 5 mægler-konti</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Delt lead-database</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>AI-opsummering af køberinteresse</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Sælger-statusside</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Prioriteret support</li>
+          </ul>
+          <button class="btn-pricing-outline" onclick="openModal()">Start gratis prøveperiode</button>
+        </div>
+        <div class="pricing-card reveal reveal-delay-3">
+          <div class="plan-name">Kæde</div>
+          <div class="plan-price" style="font-size:2rem">Kontakt os</div>
+          <p class="plan-desc">Til landsdækkende kæder med særlige behov for integration, SSO og centraliseret styring.</p>
+          <ul class="plan-features">
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Alt fra Team</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Ubegrænsede mæglere</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>SSO / Active Directory</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>API-adgang</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Custom onboarding</li>
+            <li><i data-lucide="check" class="check" style="width:16px;height:16px"></i>Dedikeret account manager</li>
+          </ul>
+          <button class="btn-pricing-ghost" onclick="openModal()">Book et møde</button>
+        </div>
+      </div>
+      <p class="pricing-note reveal">14 dages gratis prøveperiode på alle planer. Ingen kreditkort kræves. Opsig til enhver tid.</p>
+    </div>
+  </section>
+  <section id="social-proof">
+    <div class="container">
+      <div class="reveal" style="text-align:center">
+        <div class="section-label">Hvad mæglerne siger</div>
+        <h2 class="section-title">Mæglere sparer timer hver uge</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial reveal reveal-delay-1">
+          <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+          <p class="testimonial-text">Fremvis har ændret min arbejdsdag fuldstændigt. Jeg brugte nemt 2 timer om ugen på at koordinere fremvisninger per telefon. Nu sker det hele automatisk, og jeg har pludselig tid til det, der faktisk skaber salg.</p>
+          <div class="testimonial-author"><div class="author-avatar">MK</div><div><div class="author-name">Mette Krogh</div><div class="author-role">Ejendomsmægler, EDC Hellerup</div></div></div>
+        </div>
+        <div class="testimonial reveal reveal-delay-2">
+          <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+          <p class="testimonial-text">Vores sælgere er vilde med det. De kan godkende tider fra telefonen på to minutter, og de får automatisk besked, når nogen booker. Vi får næsten ingen statusopkald mere — det er guld værd.</p>
+          <div class="testimonial-author"><div class="author-avatar">TN</div><div><div class="author-name">Thomas Nørgaard</div><div class="author-role">Partner, Home Nordsjælland</div></div></div>
+        </div>
+        <div class="testimonial reveal reveal-delay-3">
+          <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+          <p class="testimonial-text">AI-opsummeringen er genial. Jeg kan i ét blik se, at "Køber 3 spurgte til prisen to gange og bad om tegninger" — den slags nuancer glemte jeg altid at skrive ned. Nu er det bare der automatisk.</p>
+          <div class="testimonial-author"><div class="author-avatar">SL</div><div><div class="author-name">Sofie Lund</div><div class="author-role">Mægler, Danbolig Østerbro</div></div></div>
+        </div>
+      </div>
+      <div class="trust-logos reveal">
+        <div class="trust-logo">EDC</div><div class="trust-logo">Home</div><div class="trust-logo">Danbolig</div><div class="trust-logo">Nybolig</div><div class="trust-logo">Estate</div>
+      </div>
+    </div>
+  </section>
+  <section id="cta">
+    <div class="container">
+      <div class="reveal">
+        <h2>Kom i gang på 2 minutter</h2>
+        <p>Opret din konto, tilføj din første bolig, og send det første bookinglink — alt inden din næste kop kaffe.</p>
+        <div class="cta-actions">
+          <button class="btn-white" onclick="openModal()">Prøv gratis i 14 dage</button>
+          <button class="btn-outline-white" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">Se live demo</button>
+        </div>
+        <p class="cta-note">Ingen kreditkort · Ingen binding · Dansk support</p>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">Fremvis<span>.</span></div>
+          <p class="footer-tagline">Det simple fremvisningssystem, ejendomsmæglere har manglet. Færre opkald, bedre overblik.</p>
+          <div style="font-size:0.8125rem;color:rgba(255,255,255,0.25)">CVR: 44 XX XX XX</div>
+        </div>
+        <div class="footer-col"><h5>Produkt</h5><ul><li><a href="#features">Funktioner</a></li><li><a href="#pricing">Priser</a></li><li><a href="#demo">Demo</a></li><li><a href="#">Opdateringer</a></li></ul></div>
+        <div class="footer-col"><h5>Virksomhed</h5><ul><li><a href="#">Om Fremvis</a></li><li><a href="#">Blog</a></li><li><a href="#">Karriere</a></li><li><a href="#">Kontakt</a></li></ul></div>
+        <div class="footer-col"><h5>Juridisk</h5><ul><li><a href="#">Privatlivspolitik</a></li><li><a href="#">Vilkår og betingelser</a></li><li><a href="#">GDPR</a></li><li><a href="#">Cookies</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Fremvis ApS · Bygget i Danmark</p>
+        <div style="display:flex;gap:16px"><a href="#">LinkedIn</a><a href="#">support@fremvis.dk</a></div>
+      </div>
+    </div>
+  </footer>
+  <div class="modal-overlay" id="signupModal" onclick="handleOverlayClick(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()"><i data-lucide="x" style="width:14px;height:14px"></i></button>
+      <h3>Start din gratis prøveperiode</h3>
+      <p>14 dage gratis. Ingen kreditkort. Opsig når som helst.</p>
+      <div id="modalForm">
+        <div class="form-group"><label>Navn</label><input type="text" placeholder="Dit fulde navn" id="f-name" /></div>
+        <div class="form-group"><label>E-mail</label><input type="email" placeholder="din@email.dk" id="f-email" /></div>
+        <div class="form-group"><label>Mæglerkæde / kontor</label><input type="text" placeholder="f.eks. EDC, Home, selvstændig..." id="f-company" /></div>
+        <div class="form-group"><label>Antal mæglere</label><select id="f-size"><option value="">Vælg...</option><option>Kun mig (1)</option><option>2–5 mæglere</option><option>6–15 mæglere</option><option>16+ mæglere</option></select></div>
+        <button class="modal-btn" onclick="submitSignup()">Opret konto gratis</button>
+        <p style="text-align:center;font-size:0.8125rem;color:var(--text-muted);margin-top:12px">Ved tilmelding accepterer du vores <a href="#" style="color:var(--green)">vilkår</a> og <a href="#" style="color:var(--green)">privatlivspolitik</a></p>
+      </div>
+      <div id="modalSuccess" style="display:none;text-align:center;padding:20px 0">
+        <div style="width:56px;height:56px;background:var(--green-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--green)"><i data-lucide="check" style="width:26px;height:26px"></i></div>
+        <h4 style="font-family:Inter,sans-serif;font-size:1.125rem;color:var(--navy);margin-bottom:8px">Vi ses snart</h4>
+        <p style="font-size:0.9rem;color:var(--text-secondary)">Vi har sendt dig en bekræftelsesmail. Din konto er klar inden for få minutter.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() { lucide.createIcons(); initReveal(); initScrollProgress(); });
+    function initScrollProgress() { window.addEventListener('scroll', function() { var s = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100; document.getElementById('scrollProgress').style.width = s + '%'; }); }
+    function initReveal() {
+      var els = document.querySelectorAll('.reveal');
+      var io = new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(function(el) { io.observe(el); });
+      document.querySelectorAll('#hero .reveal').forEach(function(el) { setTimeout(function() { el.classList.add('visible'); }, 100); });
+    }
+    function switchTab(flow) {
+      document.querySelectorAll('.demo-tab').forEach(function(t) { t.classList.remove('active'); });
+      document.querySelectorAll('.demo-panel').forEach(function(p) { p.classList.remove('active'); });
+      var tabs = document.querySelectorAll('.demo-tab');
+      var map = { magler: 0, saelger: 1, koeber: 2 };
+      tabs[map[flow]].classList.add('active');
+      document.getElementById('panel-' + flow).classList.add('active');
+      lucide.createIcons();
+    }
+    function toggleSlot(el) { el.classList.toggle('selected'); }
+    function confirmSellerTimes() {
+      var sel = document.querySelectorAll('#timeGrid .time-slot.selected').length;
+      if (sel === 0) { alert('Vælg mindst ét tidspunkt'); return; }
+      document.getElementById('sellerConfirmBtn').style.display = 'none';
+      document.getElementById('sellerConfirmation').classList.add('show');
+      lucide.createIcons();
+    }
+    function bookSlot(el, idx) {
+      if (el.classList.contains('booked')) return;
+      document.querySelectorAll('.buyer-slot').forEach(function(s) { s.classList.remove('booked'); s.querySelector('i').setAttribute('data-lucide', 'arrow-right'); });
+      el.classList.add('booked');
+      el.querySelector('i').setAttribute('data-lucide', 'check');
+      lucide.createIcons();
+      var times = ['Mandag 16. juni kl. 14:00', 'Tirsdag 17. juni kl. 17:00', 'Fredag 20. juni kl. 10:00'];
+      document.getElementById('buyerConfirmationText').textContent = 'Du er booket til ' + times[idx] + ', Strandvejen 142. Bekræftelse sendes på e-mail og SMS.';
+      document.getElementById('buyerConfirmation').classList.add('show');
+    }
+    function openModal() { document.getElementById('signupModal').classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeModal() { document.getElementById('signupModal').classList.remove('open'); document.body.style.overflow = ''; }
+    function handleOverlayClick(e) { if (e.target === document.getElementById('signupModal')) closeModal(); }
+    function submitSignup() {
+      var name = document.getElementById('f-name').value.trim();
+      var email = document.getElementById('f-email').value.trim();
+      if (!name || !email) { alert('Udfyld venligst navn og e-mail'); return; }
+      document.getElementById('modalForm').style.display = 'none';
+      document.getElementById('modalSuccess').style.display = 'block';
+      lucide.createIcons();
+    }
+    function toggleMobileNav() { var m = document.getElementById('mobileMenu'); m.style.display = m.style.display === 'none' ? 'block' : 'none'; }
+    function closeMobileNav() { document.getElementById('mobileMenu').style.display = 'none'; }
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+  </script>
+</body>
+</html>
